@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import avatar from '../../images/avatar.svg';
+import avatar from '../../assets/icons/avatar.svg';
 import ProfileField from '../ProfileField/ProfileField';
 import CollectionCard from '../CollectionCard/CollectionCard';
 
@@ -13,7 +13,7 @@ import Col from 'react-bootstrap/Col';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
-const Styles = styled.section`
+const StyledSection = styled.section`
   .avatar {
     margin-bottom: 0;
 
@@ -40,7 +40,7 @@ const Styles = styled.section`
 
 function ProfileCard() {
   return (
-    <Styles>
+    <StyledSection>
       <Row>
         <Col xs={12}>
           <CardGroup>
@@ -124,7 +124,7 @@ function ProfileCard() {
           </CardGroup>
         </Col>
       </Row>
-    </Styles>
+    </StyledSection>
   );
 }
 

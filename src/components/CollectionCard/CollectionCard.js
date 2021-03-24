@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'react-bootstrap/Image';
 import styled from 'styled-components';
 
-const Card = styled.div`
+const StyledCard = styled.div`
   .collection-info {
     font-size: 0.7rem;
   }
@@ -10,7 +10,7 @@ const Card = styled.div`
 
 function CollectionCard({ title, numberOfTitles }) {
   return (
-    <Card className="collection d-flex">
+    <StyledCard className="collection d-flex">
       <p className="collection-image">
         <Image src="https://via.placeholder.com/150" />
       </p>
@@ -20,7 +20,7 @@ function CollectionCard({ title, numberOfTitles }) {
           {numberOfTitles} titles
         </p>
       </div>
-    </Card>
+    </StyledCard>
   );
 }
 

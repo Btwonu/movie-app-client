@@ -6,10 +6,10 @@ import Navigation from '../Navigation/Navigation';
 
 function Layout(props) {
   return (
-    <Container fluid>
+    <>
       <Navigation />
-      {props.children}
-    </Container>
+      <Container fluid>{props.children}</Container>
+    </>
   );
 }
 

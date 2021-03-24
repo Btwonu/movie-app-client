@@ -1,0 +1,131 @@
+import React from 'react';
+import styled from 'styled-components';
+
+import avatar from '../../images/avatar.svg';
+import ProfileField from '../ProfileField/ProfileField';
+import CollectionCard from '../CollectionCard/CollectionCard';
+
+import Card from 'react-bootstrap/Card';
+import CardGroup from 'react-bootstrap/CardGroup';
+import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
+
+const Styles = styled.section`
+  .avatar {
+    margin-bottom: 0;
+
+    img {
+      max-width: 48px;
+    }
+  }
+
+  .card-header {
+    width: 100%;
+    margin-top: 48px;
+  }
+
+  .card {
+    margin: 0;
+  }
+
+  .collections {
+    img {
+      max-width: 64px;
+    }
+  }
+`;
+
+function ProfileCard() {
+  return (
+    <Styles>
+      <Row>
+        <Col xs={12}>
+          <CardGroup>
+            <Card.Header className="border d-flex">
+              <p className="avatar">
+                <Image src={avatar} roundedCircle></Image>
+              </p>
+              <Card.Text className="d-flex align-items-center ml-2">
+                User
+              </Card.Text>
+            </Card.Header>
+            <Card>
+              <Card.Body>
+                <Card.Title>Account Details</Card.Title>
+                <hr />
+                <ProfileField property="Name" value="User Userov" />
+                <ProfileField property="Email" value="user@example.com" />
+                <ProfileField property="Movies Liked" value="33" />
+                <ProfileField property="Collections Followed" value="3" />
+                <ProfileField property="Social" />
+              </Card.Body>
+            </Card>
+
+            <Card>
+              <Card.Body>
+                <Card.Title>Movie Collection</Card.Title>
+                <hr />
+                <section className="collections d-flex mb-2">
+                  <Row>
+                    <Col>
+                      <CollectionCard
+                        title="Crime Movies"
+                        numberOfTitles="17"
+                      />
+                    </Col>
+                    <Col>
+                      <CollectionCard
+                        title="Adventure Movies"
+                        numberOfTitles="23"
+                      />
+                    </Col>
+                    <Col>
+                      <CollectionCard title="Horror Films" numberOfTitles="8" />
+                    </Col>
+                    <Col>
+                      <CollectionCard
+                        title="Documentaries"
+                        numberOfTitles="66"
+                      />
+                    </Col>
+                  </Row>
+                </section>
+                <Card.Title>Friends</Card.Title>
+                <hr />
+                <section className="friends d-flex">
+                  <Row>
+                    <Col>
+                      <p className="avatar">
+                        <Image src={avatar} roundedCircle></Image>
+                      </p>
+                    </Col>
+                    <Col>
+                      <p className="avatar">
+                        <Image src={avatar} roundedCircle></Image>
+                      </p>
+                    </Col>
+                    <Col>
+                      <p className="avatar">
+                        <Image src={avatar} roundedCircle></Image>
+                      </p>
+                    </Col>
+                    <Col>
+                      <p className="avatar">
+                        <Image src={avatar} roundedCircle></Image>
+                      </p>
+                    </Col>
+                  </Row>
+                </section>
+              </Card.Body>
+            </Card>
+          </CardGroup>
+        </Col>
+      </Row>
+    </Styles>
+  );
+}
+
+export default ProfileCard;

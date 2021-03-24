@@ -1,7 +1,7 @@
 import React from 'react';
 
 function TopRated() {
-  return <div>TopRated</div>;
+  return <h1 className="mt-5">TopRated</h1>;
 }
 
 export default TopRated;

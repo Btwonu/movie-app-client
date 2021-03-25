@@ -1,10 +1,40 @@
-import React from 'react';
+import { Component } from 'react';
 
 // Components
 import MovieCardList from '../../components/Movie/MovieCardList';
 
-const Upcoming = () => {
-  return <h1 className="mt-5">Upcoming</h1>;
-};
+// Services
+import movieService from '../../services/movieService';
+
+class Upcoming extends Component {
+  constructor() {
+    super();
+    this.state = {
+      error: null,
+      isLoaded: false,
+      movies: [],
+    };
+  }
+
+  componentDidMount() {
+    movieService.getUpcoming().then(
+      (movies) => {
+        this.setState({ movies, isLoaded: true });
+      },
+      (error) => {
+        this.setState({ error, isLoaded: true });
+      }
+    );
+  }
+
+  render() {
+    const { error, isLoaded, movies } = this.state;
+    if (!isLoaded) {
+      return <h2>Loading...</h2>;
+    } else {
+      return <MovieCardList movies={movies} />;
+    }
+  }
+}
 
 export default Upcoming;

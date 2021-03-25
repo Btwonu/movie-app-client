@@ -17,7 +17,7 @@ class Popular extends Component {
   }
 
   componentDidMount() {
-    movieService.getAll().then(
+    movieService.getPopular().then(
       (movies) => {
         this.setState({ movies, isLoaded: true });
       },

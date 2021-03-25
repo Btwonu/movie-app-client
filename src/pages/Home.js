@@ -5,17 +5,12 @@ import styled from 'styled-components';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-// Components
-import MovieCardList from '../components/Movie/MovieCardList';
-
 const StyledSection = styled.section``;
 
 function Home() {
   return (
     <StyledSection className="pt-4 d-flex">
-      <Row>
-        <MovieCardList />
-      </Row>
+      <Row></Row>
     </StyledSection>
   );
 }

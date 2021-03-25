@@ -14,12 +14,7 @@ import Col from 'react-bootstrap/Col';
 // Components
 import MovieCard from '../components/MovieCard/MovieCard';
 
-const StyledSection = styled.section`
-  .card {
-    max-width: 180px;
-    height: 100%;
-  }
-`;
+const StyledSection = styled.section``;
 
 function Home() {
   return (

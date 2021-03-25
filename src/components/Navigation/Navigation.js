@@ -37,6 +37,12 @@ function Navigation() {
         <Nav.Link as={Link} to="/users/user">
           Profile
         </Nav.Link>
+        <Nav.Link as={Link} to="/auth/login">
+          Login
+        </Nav.Link>
+        <Nav.Link as={Link} to="/auth/register">
+          Sign Up
+        </Nav.Link>
       </Nav>
     </Navbar>
   );

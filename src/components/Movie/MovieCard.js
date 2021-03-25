@@ -27,15 +27,12 @@ const StyledDiv = styled.div`
   }
 `;
 
-const MovieCard = ({ title }) => {
+const MovieCard = ({ title, imageUrl, rating, year, id }) => {
   return (
     <StyledDiv>
+      <p>{id}</p>
       <Card bg="dark" text="white" className="border border-light rounded-lg">
-        <Card.Img
-          className="movie-poster"
-          variant="top"
-          src="https://via.placeholder.com/180"
-        />
+        <Card.Img className="movie-poster" variant="top" src={imageUrl} />
         <Card.Body>
           <Card.Title className="text-center">{title}</Card.Title>
         </Card.Body>
@@ -43,9 +40,9 @@ const MovieCard = ({ title }) => {
         <Card.Footer className="pt-2 pb-2 d-flex justify-content-between">
           <p className="movie-rating m-0 d-flex">
             <span className="material-icons">star_rate</span>
-            <span className="pl-2">8.6</span>
+            <span className="pl-2">{rating}</span>
           </p>
-          <small className="text-muted d-flex align-items-center">2020</small>
+          <small className="text-muted d-flex align-items-center">{year}</small>
         </Card.Footer>
       </Card>
     </StyledDiv>

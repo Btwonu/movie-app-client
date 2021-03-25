@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 
 // Components
-import RegisterForm from '../../components/RegisterForm/RegisterForm';
+import RegisterForm from '../../components/Auth/RegisterForm';
 
 const Register = () => {
   return (

@@ -4,7 +4,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 
 // Components
-import LoginForm from '../../components/LoginForm/LoginForm';
+import LoginForm from '../../components/Auth/LoginForm';
 
 const Login = () => {
   return (

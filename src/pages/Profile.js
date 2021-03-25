@@ -4,7 +4,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 
 // Components
-import ProfileCard from '../components/ProfileCard/ProfileCard';
+import ProfileCard from '../components/Profile/ProfileCard';
 
 function Profile() {
   return (

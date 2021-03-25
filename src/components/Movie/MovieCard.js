@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Card from 'react-bootstrap/Card';
 
 const StyledDiv = styled.div`
-  width: 200px;
+  width: 250px;
   height: 100%;
 
   .card {
@@ -13,7 +13,7 @@ const StyledDiv = styled.div`
   }
 
   .movie-poster {
-    height: 66%;
+    height: auto;
   }
 
   .card-title {
@@ -30,9 +30,12 @@ const StyledDiv = styled.div`
 const MovieCard = ({ title, imageUrl, rating, year, id }) => {
   return (
     <StyledDiv>
-      <p>{id}</p>
       <Card bg="dark" text="white" className="border border-light rounded-lg">
-        <Card.Img className="movie-poster" variant="top" src={imageUrl} />
+        <Card.Img
+          className="movie-poster img-fluid"
+          variant="top"
+          src={imageUrl}
+        />
         <Card.Body>
           <Card.Title className="text-center">{title}</Card.Title>
         </Card.Body>

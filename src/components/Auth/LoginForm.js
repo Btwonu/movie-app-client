@@ -25,7 +25,7 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.handleSubmit} className="border p-4 mt-4">
+      <Form onSubmit={this.handleSubmit} className="border shadow-sm mt-4 p-4">
         <Form.Group id="login-email">
           <Form.Label>Email</Form.Label>
           <Form.Control

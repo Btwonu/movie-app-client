@@ -29,7 +29,7 @@ class RegisterForm extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.handleSubmit} className="border p-4 mt-4">
+      <Form onSubmit={this.handleSubmit} className="border shadow-sm p-4 mt-4">
         <Form.Group className="pt-2" as={Row}>
           <Form.Label column xs={6} sm={4} md={6}>
             Username

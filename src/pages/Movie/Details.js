@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Details = ({ match }) => {
+const Details = ({ match, history, location }) => {
+  console.log(match, history, location);
   return <h1>{match.params.movieId}</h1>;
 };
 

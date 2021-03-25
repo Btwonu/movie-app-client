@@ -4,13 +4,13 @@ import Container from 'react-bootstrap/Container';
 
 import Navigation from './Navigation';
 
-function Layout(props) {
+const Layout = (props) => {
   return (
     <>
       <Navigation />
-      <Container fluid>{props.children}</Container>
+      <Container className="container-sm">{props.children}</Container>
     </>
   );
-}
+};
 
 export default Layout;

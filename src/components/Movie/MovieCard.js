@@ -7,6 +7,8 @@ import Card from 'react-bootstrap/Card';
 const StyledDiv = styled.div`
   width: 250px;
   height: 100%;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
 
   .card {
     height: 100%;
@@ -30,7 +32,11 @@ const StyledDiv = styled.div`
 const MovieCard = ({ title, imageUrl, rating, year, id }) => {
   return (
     <StyledDiv>
-      <Card bg="dark" text="white" className="border border-light rounded-lg">
+      <Card
+        bg="dark"
+        text="white"
+        className="border-top border-secondary rounded-lg"
+      >
         <Card.Img
           className="movie-poster img-fluid"
           variant="top"

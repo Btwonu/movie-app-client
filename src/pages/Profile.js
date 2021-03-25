@@ -8,9 +8,9 @@ import ProfileCard from '../components/Profile/ProfileCard';
 
 function Profile() {
   return (
-    <Container fluid className="mt-5">
-      <ProfileCard />
-    </Container>
+    // <Container fluid className="mt-5">
+    <ProfileCard />
+    // </Container>
   );
 }
 

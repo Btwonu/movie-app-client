@@ -7,17 +7,20 @@ import MovieCardList from '../../components/Movie/MovieCardList';
 import movieService from '../../services/movieService';
 
 class Popular extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.state = {
       error: null,
       isLoaded: false,
       movies: [],
     };
+
+    console.log(props);
   }
 
   componentDidMount() {
-    movieService.getPopular().then(
+    movieService.getMovies('popular').then(
       (movies) => {
         this.setState({ movies, isLoaded: true });
       },

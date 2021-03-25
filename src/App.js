@@ -1,3 +1,4 @@
+import { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Popular from './pages/Movie/Popular';
@@ -10,14 +11,18 @@ import Register from './pages/Auth/Register';
 
 import Layout from './components/Layout/Layout';
 
-function App() {
-  return (
-    <div>
+class App extends Component {
+  constructor() {
+    super();
+  }
+
+  render() {
+    return (
       <Layout>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/movies/popular" component={Popular} />
-          <Route path="/movies/top-rated" component={TopRated} />
+          <Route path="/movies/top-rated" component={Popular} />
           <Route path="/movies/upcoming" component={Upcoming} />
           <Route path="/movies/:movieId" component={Details} />
           <Route path="/users/user" component={Profile} />
@@ -25,8 +30,8 @@ function App() {
           <Route path="/auth/register" component={Register} />
         </Switch>
       </Layout>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;

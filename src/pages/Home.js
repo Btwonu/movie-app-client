@@ -7,12 +7,13 @@ import Col from 'react-bootstrap/Col';
 
 const StyledSection = styled.section``;
 
-function Home() {
+const Home = (props) => {
+  console.log('Home props:', props);
   return (
     <StyledSection className="pt-4 d-flex">
       <Row></Row>
     </StyledSection>
   );
-}
+};
 
 export default Home;

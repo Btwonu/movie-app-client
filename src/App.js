@@ -1,12 +1,12 @@
 import { Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
-import Popular from './pages/movies/Popular';
-import TopRated from './pages/movies/TopRated';
-import Upcoming from './pages/movies/Upcoming';
-import Details from './pages/movies/Details';
+import Popular from './pages/Movie/Popular';
+import TopRated from './pages/Movie/TopRated';
+import Upcoming from './pages/Movie/Upcoming';
+import Details from './pages/Movie/Details';
 import Profile from './pages/Profile';
-import Login from './pages/auth/Login';
-import Register from './pages/auth/Register';
+import Login from './pages/Auth/Login';
+import Register from './pages/Auth/Register';
 
 import Layout from './components/Layout/Layout';
 

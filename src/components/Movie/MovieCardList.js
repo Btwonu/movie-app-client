@@ -11,6 +11,7 @@ import MovieCard from './MovieCard';
 class MovieCardList extends Component {
   constructor(props) {
     super(props);
+    console.log(this.props.movies);
   }
 
   render() {

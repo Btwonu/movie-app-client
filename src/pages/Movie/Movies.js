@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import qs from 'qs';
 
 // Components
 import MovieCardList from '../../components/Movie/MovieCardList';

@@ -1,9 +1,6 @@
 import { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
-import Popular from './pages/Movie/Popular';
-import TopRated from './pages/Movie/TopRated';
-import Upcoming from './pages/Movie/Upcoming';
 import Movies from './pages/Movie/Movies';
 import Details from './pages/Movie/Details';
 import Profile from './pages/Profile';

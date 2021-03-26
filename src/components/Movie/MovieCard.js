@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 // Bootstrap
@@ -12,6 +14,10 @@ const StyledDiv = styled.div`
 
   .card {
     height: 100%;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   .movie-poster {
@@ -27,12 +33,18 @@ const StyledDiv = styled.div`
       color: yellow;
     }
   }
+
+  /* a:hover {
+    text-decoration: none;
+  } */
 `;
 
 const MovieCard = ({ title, imageUrl, rating, year, id }) => {
   return (
     <StyledDiv>
       <Card
+        as={Link}
+        to={`/movies/${id}`}
         bg="dark"
         text="white"
         className="border-top border-secondary rounded-lg"

@@ -6,6 +6,9 @@ import MovieCardList from '../../components/Movie/MovieCardList';
 // Services
 import movieService from '../../services/movieService';
 
+// Utils
+import createTitle from '../../utils/createTitle';
+
 class Movies extends Component {
   constructor(props) {
     super(props);
@@ -14,14 +17,16 @@ class Movies extends Component {
       error: null,
       isLoaded: false,
       movies: [],
-      currentCategory: 'upcoming',
+      title: '',
     };
   }
 
   componentDidMount() {
-    movieService.getMovies(this.state.currentCategory).then(
+    let { category } = this.props.match.params;
+
+    movieService.getMovies(category).then(
       (movies) => {
-        this.setState({ movies, isLoaded: true });
+        this.setState({ movies, isLoaded: true, title: createTitle(category) });
       },
       (error) => {
         this.setState({ error, isLoaded: true });
@@ -33,15 +38,15 @@ class Movies extends Component {
     let { category } = this.props.match.params;
 
     if (prevProps.match.params.category == category) return;
-
+    console.log(category);
     this.setState({ isLoaded: false });
 
     movieService.getMovies(category).then(
       (movies) => {
-        this.setState({ movies, isLoaded: true, currentCategory: category });
+        this.setState({ movies, isLoaded: true, title: createTitle(category) });
       },
       (error) => {
-        this.setState({ error, isLoaded: true, currentCategory: category });
+        this.setState({ error, isLoaded: true });
       }
     );
   }
@@ -51,7 +56,12 @@ class Movies extends Component {
     if (!isLoaded) {
       return <h2>Loading...</h2>;
     } else {
-      return <MovieCardList movies={movies} />;
+      return (
+        <>
+          <h2 className="text-center pt-4">{this.state.title} Movies</h2>
+          <MovieCardList movies={movies} />
+        </>
+      );
     }
   }
 }

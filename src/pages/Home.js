@@ -2,12 +2,8 @@ import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-// Bootstrap
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
-import MovieCategory from '../components/Movie/MovieCategory';
+// Components
+import MovieCategoryList from '../components/Movie/MovieCategoryList';
 
 // Services
 import MovieService from '../services/movieService';
@@ -19,43 +15,23 @@ class Home extends Component {
     super();
 
     this.state = {
-      categories: [
-        {
-          name: 'Upcoming',
-          movies: [
-            { title: 'Movie Title', year: 2015, rating: 8 },
-            { title: 'Movie Title', year: 2015, rating: 8 },
-            { title: 'Movie Title', year: 2015, rating: 8 },
-          ],
-        },
-        {
-          name: 'Top Rated',
-          movies: [
-            { title: 'Movie Title', year: 2015, rating: 8 },
-            { title: 'Movie Title', year: 2015, rating: 8 },
-            { title: 'Movie Title', year: 2015, rating: 8 },
-            { title: 'Movie Title', year: 2015, rating: 8 },
-          ],
-        },
-        {
-          name: 'Popular',
-          movies: [
-            { title: 'Movie Title', year: 2015, rating: 8 },
-            { title: 'Movie Title', year: 2015, rating: 8 },
-          ],
-        },
-      ],
+      categories: [],
     };
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:5001/movie-find-dev/europe-west1/api/movies').then(
+      (res) =>
+        res.json().then((categories) => {
+          this.setState({ categories });
+        })
+    );
   }
 
   render() {
     return (
       <StyledMain className="pt-4 d-flex">
-        <Container>
-          {this.state.categories.map(({ name, movies }) => {
-            return <MovieCategory name={name} movies={movies} />;
-          })}
-        </Container>
+        <MovieCategoryList categories={this.state.categories} />
       </StyledMain>
     );
   }

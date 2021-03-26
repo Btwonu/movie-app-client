@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Popular from './pages/Movie/Popular';
 import TopRated from './pages/Movie/TopRated';
 import Upcoming from './pages/Movie/Upcoming';
+import Movies from './pages/Movie/Movies';
 import Details from './pages/Movie/Details';
 import Profile from './pages/Profile';
 import Login from './pages/Auth/Login';
@@ -21,9 +22,8 @@ class App extends Component {
       <Layout>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/movies/popular" component={Popular} />
-          <Route path="/movies/top-rated" component={Popular} />
-          <Route path="/movies/upcoming" component={Upcoming} />
+          {/* <Route path="/movies" component={Movies} /> */}
+          <Route path="/movies/categories/:category" component={Movies} />
           <Route path="/movies/:movieId" component={Details} />
           <Route path="/users/user" component={Profile} />
           <Route path="/auth/login" component={Login} />

@@ -25,13 +25,13 @@ function Navigation() {
         <Nav.Link as={Link} to="/">
           Home
         </Nav.Link>
-        <Nav.Link as={Link} to="/movies/popular">
+        <Nav.Link as={Link} to="/movies/categories/popular">
           Popular
         </Nav.Link>
-        <Nav.Link as={Link} to="/movies/top-rated">
+        <Nav.Link as={Link} to="/movies/categories/top_rated">
           Top Rated
         </Nav.Link>
-        <Nav.Link as={Link} to="/movies/upcoming">
+        <Nav.Link as={Link} to="/movies/categories/upcoming">
           Upcoming
         </Nav.Link>
         <Nav.Link as={Link} to="/users/user">

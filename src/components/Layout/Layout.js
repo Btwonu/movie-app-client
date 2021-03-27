@@ -8,7 +8,7 @@ const Layout = (props) => {
   return (
     <>
       <Navigation />
-      <Container className="container-sm">{props.children}</Container>
+      <Container fluid="sm">{props.children}</Container>
     </>
   );
 };

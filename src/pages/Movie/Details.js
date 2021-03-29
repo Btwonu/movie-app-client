@@ -1,5 +1,7 @@
 import { Component } from 'react';
 
+import CollectionModal from '../../components/Collection/CollectionModal';
+
 // Services
 import movieService from '../../services/movieService';
 import youtubeService from '../../services/youtubeService';
@@ -10,6 +12,7 @@ class Details extends Component {
 
     this.state = {
       movie: {},
+      trailer: '',
     };
   }
 
@@ -38,6 +41,8 @@ class Details extends Component {
             allowFullScreen
           ></iframe>
         </div>
+
+        <CollectionModal />
       </>
     );
   }

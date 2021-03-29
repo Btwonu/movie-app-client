@@ -1,12 +1,14 @@
 import { Component } from 'react';
 
+import CollectionCardList from '../components/Collection/CollectionCardList';
+
 class Collections extends Component {
   constructor() {
     super();
   }
 
   render() {
-    return <h1>Collections</h1>;
+    return <CollectionCardList />;
   }
 }
 

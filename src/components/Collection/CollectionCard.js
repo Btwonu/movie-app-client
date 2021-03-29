@@ -1,25 +1,25 @@
 import React from 'react';
-import Image from 'react-bootstrap/Image';
 import styled from 'styled-components';
 
-const StyledCard = styled.div`
-  .collection-info {
-    font-size: 0.7rem;
-  }
-`;
+import Image from 'react-bootstrap/Image';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
-function CollectionCard({ title, numberOfTitles }) {
+const StyledCard = styled.div``;
+
+function CollectionCard({ title, description, movieCount }) {
   return (
-    <StyledCard className="collection d-flex">
-      <p className="collection-image">
-        <Image src="https://via.placeholder.com/150" />
-      </p>
-      <div className="collection-info">
-        <p className="ml-2 mb-0 font-weight-bold">{title}</p>
-        <p className="ml-2 font-weight-bold text-muted">
-          {numberOfTitles} titles
-        </p>
-      </div>
+    <StyledCard>
+      <Card className="text-center">
+        <Card.Header>{title}</Card.Header>
+        <Card.Body>
+          <Card.Text>{description}</Card.Text>
+          <Button variant="primary">Look Inside</Button>
+        </Card.Body>
+        <Card.Footer className="text-muted">{movieCount} movies</Card.Footer>
+      </Card>
     </StyledCard>
   );
 }

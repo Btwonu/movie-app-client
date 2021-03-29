@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import avatar from '../../assets/icons/avatar.svg';
 import ProfileField from './ProfileField';
-import CollectionCard from '../Collection/CollectionCard';
+import CollectionCard from './CollectionCard';
 
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';

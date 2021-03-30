@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 
 // Components
 import Home from './pages/Home';
@@ -12,6 +14,28 @@ import Collections from './pages/Collections';
 import Users from './pages/Users';
 
 import Layout from './components/Layout/Layout';
+
+let user;
+const token = localStorage.getItem('AuthToken');
+
+if (token) {
+  const decodedToken = jwtDecode(token);
+  console.log(decodedToken);
+
+  if (decodedToken.exp * 1000 < Date.now()) {
+    // token expired
+  } else {
+    axios.defaults.headers.common['Authorization'] = token;
+
+    axios({
+      method: 'get',
+      url:
+        'http://localhost:5001/movie-find-dev/europe-west1/api/users/profile',
+    }).then((user) => {
+      console.log(user.data);
+    });
+  }
+}
 
 class App extends Component {
   constructor() {

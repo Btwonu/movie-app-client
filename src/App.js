@@ -20,9 +20,9 @@ const token = localStorage.getItem('AuthToken');
 
 if (token) {
   const decodedToken = jwtDecode(token);
-  console.log(decodedToken);
 
   if (decodedToken.exp * 1000 < Date.now()) {
+    console.log('Token has expired');
     // token expired
   } else {
     axios.defaults.headers.common['Authorization'] = token;
@@ -33,6 +33,7 @@ if (token) {
         'http://localhost:5001/movie-find-dev/europe-west1/api/users/profile',
     }).then((user) => {
       console.log(user.data);
+      user = user.data;
     });
   }
 }

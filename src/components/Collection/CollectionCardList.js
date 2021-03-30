@@ -16,56 +16,27 @@ class CollectionCardList extends Component {
   render() {
     return (
       <Row className="pt-4">
-        {[
-          {
-            title: 'A Collection Title',
-            movieCount: 33,
-            description: 'A nice description describing our collection.',
-          },
-          {
-            title: 'Crime Movies',
-            movieCount: 16,
-            description: 'Some of my favorite movies about crime and stuff.',
-          },
-          {
-            title: 'A Collection Title',
-            movieCount: 33,
-            description: 'A nice description describing our collection.',
-          },
-          {
-            title: 'Crime Movies',
-            movieCount: 16,
-            description: 'Some of my favorite movies about crime and stuff.',
-          },
-          {
-            title: 'A Collection Title',
-            movieCount: 33,
-            description: 'A nice description describing our collection.',
-          },
-          {
-            title: 'Crime Movies',
-            movieCount: 16,
-            description: 'Some of my favorite movies about crime and stuff.',
-          },
-          {
-            title: 'A Collection Title',
-            movieCount: 33,
-            description: 'A nice description describing our collection.',
-          },
-          {
-            title: 'Crime Movies',
-            movieCount: 16,
-            description: 'Some of my favorite movies about crime and stuff.',
-          },
-        ].map(({ title, movieCount, description }) => (
-          <Col xs="12" sm="6" md="4" lg="3" xl="3" className="mb-2">
-            <CollectionCard
-              title={title}
-              movieCount={movieCount}
-              description={description}
-            />
-          </Col>
-        ))}
+        {this.props.collections.map(
+          ({ collectionId, creator, title, movies, description }) => (
+            <Col
+              key={collectionId}
+              xs="12"
+              sm="6"
+              md="4"
+              lg="3"
+              xl="3"
+              className="mb-2"
+            >
+              <CollectionCard
+                collectionId={collectionId}
+                creator={creator}
+                title={title}
+                movieCount={movies.length}
+                description={description}
+              />
+            </Col>
+          )
+        )}
       </Row>
     );
   }

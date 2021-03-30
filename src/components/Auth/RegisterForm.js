@@ -37,6 +37,7 @@ class RegisterForm extends Component {
     })
       .then((res) => {
         localStorage.setItem('AuthToken', `Bearer ${res.data.JWT}`);
+        // set axios default headers
         console.log('Registration done!');
       })
       .catch((err) => {

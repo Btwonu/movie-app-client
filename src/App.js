@@ -15,6 +15,9 @@ import Users from './pages/Users';
 
 import Layout from './components/Layout/Layout';
 
+axios.defaults.baseURL =
+  'http://localhost:5001/movie-find-dev/europe-west1/api';
+
 let user;
 const token = localStorage.getItem('AuthToken');
 
@@ -29,8 +32,7 @@ if (token) {
 
     axios({
       method: 'get',
-      url:
-        'http://localhost:5001/movie-find-dev/europe-west1/api/users/profile',
+      url: '/users/profile',
     }).then((user) => {
       console.log(user.data);
       user = user.data;

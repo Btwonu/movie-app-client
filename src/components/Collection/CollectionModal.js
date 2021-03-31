@@ -4,9 +4,14 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
+import { useAuth } from '../../contexts/AuthContext';
+
 const CollectionModal = () => {
   const [show, setShow] = useState(false);
   const [chosenCollection, setChosenCollection] = useState('');
+
+  const { login } = useAuth();
+  console.log(login);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

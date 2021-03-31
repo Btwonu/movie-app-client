@@ -1,7 +1,8 @@
 const API_KEY = 'AIzaSyC9imxdDkHUgZhYKqbWqbC4jM8YpOzQQjc';
 
 const getTrailer = (movieTitle) => {
-  let url = `https://youtube.googleapis.com/youtube/v3/search?q=${movieTitle}'&type=video&key=${API_KEY}`;
+  let query = `${movieTitle} movie trailer`;
+  let url = `https://youtube.googleapis.com/youtube/v3/search?q=${query}'&type=video&key=${API_KEY}`;
 
   return fetch(url)
     .then((res) => res.json())

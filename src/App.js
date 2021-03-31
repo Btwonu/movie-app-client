@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
@@ -13,6 +13,7 @@ import Register from './pages/Auth/Register';
 import Collections from './pages/Collections';
 import Users from './pages/Users';
 
+import { AuthContext, useAuth } from './contexts/AuthContext';
 import Layout from './components/Layout/Layout';
 
 axios.defaults.baseURL =
@@ -40,28 +41,24 @@ if (token) {
   }
 }
 
-class App extends Component {
-  constructor() {
-    super();
-  }
+const App = () => {
+  const { user } = useAuth();
 
-  render() {
-    return (
-      <Layout>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          {/* <Route path="/movies" component={Movies} /> */}
-          <Route path="/movies/categories/:category" component={Movies} />
-          <Route path="/movies/:movieId" component={Details} />
-          <Route exact path="/collections" component={Collections} />
-          <Route exact path="/users" component={Users} />
-          <Route path="/users/user" component={Profile} />
-          <Route path="/auth/login" component={Login} />
-          <Route path="/auth/register" component={Register} />
-        </Switch>
-      </Layout>
-    );
-  }
-}
+  console.log('From app USER:', user);
+  return (
+    <Layout>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/movies/categories/:category" component={Movies} />
+        <Route path="/movies/:movieId" component={Details} />
+        <Route exact path="/collections" component={Collections} />
+        <Route exact path="/users" component={Users} />
+        <Route path="/users/user" component={Profile} />
+        <Route path="/auth/login" component={Login} />
+        <Route path="/auth/register" component={Register} />
+      </Switch>
+    </Layout>
+  );
+};
 
 export default App;

@@ -1,12 +1,9 @@
 import { Component } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
 
 // Components
 import MovieCategoryList from '../components/Movie/MovieCategoryList';
-
-// Services
-import MovieService from '../services/movieService';
 
 const StyledMain = styled.main``;
 
@@ -20,12 +17,13 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:5001/movie-find-dev/europe-west1/api/movies').then(
-      (res) =>
-        res.json().then((categories) => {
-          this.setState({ categories });
-        })
-    );
+    axios('/movies')
+      .then((categories) => {
+        this.setState({ categories: categories.data });
+      })
+      .catch((err) => {
+        console.log('Home error:', err);
+      });
   }
 
   render() {

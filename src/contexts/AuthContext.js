@@ -10,7 +10,27 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const login = (email, password) => {
-    setUser({ name: 'Fake', surname: 'Faker' });
+    return axios({
+      method: 'post',
+      url: '/auth/login',
+      data: {
+        email,
+        password,
+      },
+    })
+      .then((res) => {
+        localStorage.setItem('AuthToken', `Bearer ${res.data.JWT}`);
+        console.log('Login done!');
+        setUser(res.data.userInfo);
+      })
+      .catch((err) => {
+        console.log('Login error:', err);
+        // handle error
+        // this.setState({
+        //   errors: err.response.data,
+        //   loading: false,
+        // });
+      });
   };
 
   const logout = () => {

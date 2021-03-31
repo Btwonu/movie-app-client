@@ -10,14 +10,15 @@ const CollectionModal = () => {
   const [show, setShow] = useState(false);
   const [chosenCollection, setChosenCollection] = useState('');
 
-  const { login } = useAuth();
-  console.log(login);
+  const { login, user } = useAuth();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   const handleSubmit = (e) => {
     console.log(`${chosenCollection} was chosen!`);
     setChosenCollection('');
+    login();
     setShow(false);
   };
   const handleChange = (e) => {
@@ -26,6 +27,7 @@ const CollectionModal = () => {
 
   return (
     <>
+      <p>{JSON.stringify(user)}</p>
       <Button variant="primary" onClick={handleShow}>
         Add to Collection
       </Button>

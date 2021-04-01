@@ -11,6 +11,13 @@ const create = (title, description) => {
   });
 };
 
+const getOne = (collectionId) => {
+  return axios({
+    url: `/collections/${collectionId}/movies`,
+  });
+};
+
 export default {
   create,
+  getOne,
 };

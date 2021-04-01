@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 
 // Pages
@@ -11,6 +10,7 @@ import Profile from './pages/Profile';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import Collections from './pages/Collections/Collections';
+import CollectionDetails from './pages/Collections/CollectionDetails';
 import CreateCollection from './pages/Collections/CreateCollection';
 import Users from './pages/Users';
 
@@ -19,28 +19,6 @@ import Layout from './components/Layout/Layout';
 
 axios.defaults.baseURL =
   'http://localhost:5001/movie-find-dev/europe-west1/api';
-
-let user;
-const token = localStorage.getItem('AuthToken');
-
-if (token) {
-  const decodedToken = jwtDecode(token);
-
-  if (decodedToken.exp * 1000 < Date.now()) {
-    console.log('Token has expired');
-    // token expired
-  } else {
-    axios.defaults.headers.common['Authorization'] = token;
-
-    axios({
-      method: 'get',
-      url: '/users/profile',
-    }).then((user) => {
-      console.log(user.data);
-      user = user.data;
-    });
-  }
-}
 
 const App = () => {
   const { user } = useAuth();
@@ -54,6 +32,10 @@ const App = () => {
         <Route path="/movies/:movieId" component={Details} />
         <Route exact path="/collections" component={Collections} />
         <Route exact path="/collections/create" component={CreateCollection} />
+        <Route
+          path="/collections/:collectionId"
+          component={CollectionDetails}
+        />
         <Route exact path="/users" component={Users} />
         <Route path="/users/user" component={Profile} />
         <Route path="/auth/login" component={Login} />

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
-
-// import authService from '../services/authService';
+import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 
 const AuthContext = createContext({});
@@ -32,6 +31,29 @@ const AuthProvider = ({ children }) => {
         // });
       });
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem('AuthToken');
+
+    if (token) {
+      const decodedToken = jwtDecode(token);
+
+      if (decodedToken.exp * 1000 < Date.now()) {
+        console.log('Token has expired');
+        // token expired
+      } else {
+        axios.defaults.headers.common['Authorization'] = token;
+
+        axios({
+          method: 'get',
+          url: `/users/profile`,
+        }).then((user) => {
+          console.log(user.data);
+          setUser(user.data);
+        });
+      }
+    }
+  }, []);
 
   const logout = () => {
     setUser({});

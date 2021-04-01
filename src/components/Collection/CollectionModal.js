@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -8,6 +8,7 @@ import { useAuth } from '../../contexts/AuthContext';
 
 const CollectionModal = () => {
   const [show, setShow] = useState(false);
+  const [collections, setCollections] = useState([]);
   const [chosenCollection, setChosenCollection] = useState('');
 
   const { login, user } = useAuth();
@@ -28,6 +29,7 @@ const CollectionModal = () => {
   return (
     <>
       <p>{JSON.stringify(user)}</p>
+
       <Button variant="primary" onClick={handleShow}>
         Add to Collection
       </Button>
@@ -42,14 +44,12 @@ const CollectionModal = () => {
               <Form.Label>Select</Form.Label>
               <Form.Control as="select" onChange={handleChange}>
                 <option value="">Choose Collection</option>
-                <option>Crime Movies</option>
-                <option>Romantic Movies</option>
-                <option>Animations</option>
-                <option>Documentaries</option>
+                {user?.createdCollections?.map((collection) => {
+                  return <option>{collection.title}</option>;
+                })}
               </Form.Control>
             </Form.Group>
           </Form>
-          <p>{chosenCollection}</p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

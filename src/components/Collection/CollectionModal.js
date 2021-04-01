@@ -6,10 +6,11 @@ import Form from 'react-bootstrap/Form';
 
 import { useAuth } from '../../contexts/AuthContext';
 
-const CollectionModal = () => {
+import collectionService from '../../services/collectionService';
+
+const CollectionModal = ({ movieId }) => {
   const [show, setShow] = useState(false);
-  const [collections, setCollections] = useState([]);
-  const [chosenCollection, setChosenCollection] = useState('');
+  const [chosenCollectionId, setChosenCollectionId] = useState('');
 
   const { login, user } = useAuth();
 
@@ -17,13 +18,16 @@ const CollectionModal = () => {
   const handleShow = () => setShow(true);
 
   const handleSubmit = (e) => {
-    console.log(`${chosenCollection} was chosen!`);
-    setChosenCollection('');
-    login();
+    console.log(
+      `Collection with id: ${chosenCollectionId} was chosen! Add movie with id: ${movieId} to it!`
+    );
+    collectionService.addMovieToCollection(movieId, chosenCollectionId);
+
+    setChosenCollectionId('');
     setShow(false);
   };
   const handleChange = (e) => {
-    setChosenCollection(e.target.value);
+    setChosenCollectionId(e.target.value);
   };
 
   return (
@@ -45,7 +49,11 @@ const CollectionModal = () => {
               <Form.Control as="select" onChange={handleChange}>
                 <option value="">Choose Collection</option>
                 {user?.createdCollections?.map((collection) => {
-                  return <option>{collection.title}</option>;
+                  return (
+                    <option value={collection.collectionId}>
+                      {collection.title}
+                    </option>
+                  );
                 })}
               </Form.Control>
             </Form.Group>

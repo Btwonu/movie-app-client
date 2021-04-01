@@ -13,11 +13,19 @@ const create = (title, description) => {
 
 const getOne = (collectionId) => {
   return axios({
-    url: `/collections/${collectionId}/movies`,
+    url: `/collections/${collectionId}`,
+  });
+};
+
+const addMovieToCollection = (movieId, collectionId) => {
+  return axios({
+    method: 'post',
+    url: `/collections/${collectionId}/movies/${movieId}`,
   });
 };
 
 export default {
   create,
   getOne,
+  addMovieToCollection,
 };

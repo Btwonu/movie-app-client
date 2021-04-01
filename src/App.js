@@ -3,14 +3,15 @@ import { Route, Switch } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 
-// Components
+// Pages
 import Home from './pages/Home';
 import Movies from './pages/Movie/Movies';
 import Details from './pages/Movie/Details';
 import Profile from './pages/Profile';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
-import Collections from './pages/Collections';
+import Collections from './pages/Collections/Collections';
+import CreateCollection from './pages/Collections/CreateCollection';
 import Users from './pages/Users';
 
 import { AuthContext, useAuth } from './contexts/AuthContext';
@@ -52,6 +53,7 @@ const App = () => {
         <Route path="/movies/categories/:category" component={Movies} />
         <Route path="/movies/:movieId" component={Details} />
         <Route exact path="/collections" component={Collections} />
+        <Route exact path="/collections/create" component={CreateCollection} />
         <Route exact path="/users" component={Users} />
         <Route path="/users/user" component={Profile} />
         <Route path="/auth/login" component={Login} />

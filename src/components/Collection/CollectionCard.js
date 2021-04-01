@@ -40,7 +40,7 @@ function CollectionCard({
         </Card.Body>
         <Card.Footer className="text-muted d-flex justify-content-between">
           <p className="m-0">
-            Created by <strong>{creator}</strong>
+            Created by <strong>{creator.username}</strong>
           </p>
           <p className="m-0">{movieCount} titles</p>
         </Card.Footer>

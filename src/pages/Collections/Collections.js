@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import axios from 'axios';
 
-import CollectionCardList from '../components/Collection/CollectionCardList';
+import CollectionCardList from '../../components/Collection/CollectionCardList';
 
 class Collections extends Component {
   constructor() {

@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import avatar from '../../assets/icons/avatar.svg';
@@ -10,6 +10,7 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
@@ -66,10 +67,10 @@ function ProfileCard() {
 
             <Card>
               <Card.Body>
-                <Card.Title>Movie Collection</Card.Title>
-                <hr />
-                <section className="collections d-flex mb-2">
-                  <Row>
+                <section className="collections mb-4">
+                  <Card.Title>Movie Collections</Card.Title>
+                  <hr />
+                  <Row className="d-flex">
                     <Col>
                       <CollectionCard
                         title="Crime Movies"
@@ -92,11 +93,15 @@ function ProfileCard() {
                       />
                     </Col>
                   </Row>
+                  <Button as={Link} to="/collections/create">
+                    Create Collection
+                  </Button>
                 </section>
-                <Card.Title>Friends</Card.Title>
-                <hr />
-                <section className="friends d-flex">
-                  <Row>
+
+                <section className="friends">
+                  <Card.Title>Friends</Card.Title>
+                  <hr />
+                  <Row className="d-flex">
                     <Col>
                       <p className="avatar">
                         <Image src={avatar} roundedCircle></Image>

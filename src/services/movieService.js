@@ -1,9 +1,22 @@
-const BASE_URL = 'http://localhost:5001/movie-find-dev/europe-west1/api/movies';
+import axios from 'axios';
 
-const getMovies = (movieType = '') => {
-  return fetch(`${BASE_URL}?category=${movieType}`)
-    .then((res) => res.json())
-    .catch((err) => console.error(err));
+const getMovies = async (movieType = '', pageNumber) => {
+  let url = `/movies`;
+
+  if (movieType) {
+    url += `?category=${movieType}`;
+  }
+
+  if (pageNumber) {
+    url += `&page=${pageNumber}`;
+  }
+
+  console.log('from movieService', url);
+
+  // axios({ url });
+  // return fetch(`${BASE_URL}?category=${movieType}`)
+  //   .then((res) => res.json())
+  //   .catch((err) => console.error(err));
 };
 
 const getOne = (id) => {

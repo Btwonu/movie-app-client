@@ -1,7 +1,11 @@
 import { Component } from 'react';
 
+// Bootstrap
+import { Row } from 'react-bootstrap';
+
 // Components
 import MovieCardList from '../../components/Movie/MovieCardList';
+import LoadingSpinner from '../../components/Layout/LoadingSpinner';
 
 // Services
 import movieService from '../../services/movieService';
@@ -15,7 +19,7 @@ class Movies extends Component {
 
     this.state = {
       error: null,
-      isLoaded: false,
+      isLoading: false,
       movies: [],
       title: '',
     };
@@ -24,12 +28,18 @@ class Movies extends Component {
   componentDidMount() {
     let { category } = this.props.match.params;
 
+    this.setState({ isLoading: true });
+
     movieService.getMovies(category).then(
       (movies) => {
-        this.setState({ movies, isLoaded: true, title: createTitle(category) });
+        this.setState({
+          movies,
+          isLoading: false,
+          title: createTitle(category),
+        });
       },
       (error) => {
-        this.setState({ error, isLoaded: true });
+        this.setState({ error, isLoading: false });
       }
     );
   }
@@ -38,23 +48,26 @@ class Movies extends Component {
     let { category } = this.props.match.params;
 
     if (prevProps.match.params.category == category) return;
-    console.log(category);
-    this.setState({ isLoaded: false });
+    this.setState({ isLoading: true });
 
     movieService.getMovies(category).then(
       (movies) => {
-        this.setState({ movies, isLoaded: true, title: createTitle(category) });
+        this.setState({
+          movies,
+          isLoading: false,
+          title: createTitle(category),
+        });
       },
       (error) => {
-        this.setState({ error, isLoaded: true });
+        this.setState({ error, isLoading: false });
       }
     );
   }
 
   render() {
-    const { error, isLoaded, movies } = this.state;
-    if (!isLoaded) {
-      return <h2>Loading...</h2>;
+    const { error, isLoading, movies } = this.state;
+    if (isLoading) {
+      return <LoadingSpinner />;
     } else {
       return (
         <>

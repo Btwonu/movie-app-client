@@ -5,7 +5,6 @@ import { useAuth } from '../../contexts/AuthContext';
 
 import avatar from '../../assets/icons/avatar.svg';
 import ProfileField from './ProfileField';
-import ProfileCollectionCard from './ProfileCollectionCard';
 import ProfileCollectionCardList from './ProfileCollectionCardList';
 
 import Card from 'react-bootstrap/Card';
@@ -53,18 +52,15 @@ const ProfileCard = () => {
                 <Image src={avatar} roundedCircle></Image>
               </p>
               <Card.Text className="d-flex align-items-center ml-2">
-                User
+                {user?.username}
               </Card.Text>
             </Card.Header>
             <Card>
               <Card.Body>
                 <Card.Title>Account Details</Card.Title>
                 <hr />
-                <ProfileField property="Name" value="User Userov" />
-                <ProfileField property="Email" value="user@example.com" />
-                <ProfileField property="Movies Liked" value="33" />
-                <ProfileField property="Collections Followed" value="3" />
-                <ProfileField property="Social" />
+                <ProfileField property="Name" value={user?.username} />
+                <ProfileField property="Email" value={user?.email} />
               </Card.Body>
             </Card>
 
@@ -86,7 +82,7 @@ const ProfileCard = () => {
                   </Button>
                 </section>
 
-                <section className="friends">
+                {/* <section className="friends">
                   <Card.Title>Friends</Card.Title>
                   <hr />
                   <Row className="d-flex">
@@ -111,7 +107,7 @@ const ProfileCard = () => {
                       </p>
                     </Col>
                   </Row>
-                </section>
+                </section> */}
               </Card.Body>
             </Card>
           </CardGroup>

@@ -20,7 +20,7 @@ const AuthProvider = ({ children }) => {
       .then((res) => {
         localStorage.setItem('AuthToken', `Bearer ${res.data.JWT}`);
         console.log('Login done!');
-        setUser(res.data.userInfo);
+        // setUser(res.data.userInfo);
       })
       .catch((err) => {
         console.log('Login error:', err);
@@ -57,7 +57,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const logout = () => {
-    setUser({});
+    setUser(null);
   };
 
   // useEffect(() => {

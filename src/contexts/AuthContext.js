@@ -33,6 +33,7 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    console.log('Context useEffect called');
     const token = localStorage.getItem('AuthToken');
 
     if (token) {
@@ -48,7 +49,7 @@ const AuthProvider = ({ children }) => {
           method: 'get',
           url: `/users/profile`,
         }).then((user) => {
-          console.log(user.data);
+          console.log('FROM AUTH CONTEXT:', user.data);
           setUser(user.data);
         });
       }

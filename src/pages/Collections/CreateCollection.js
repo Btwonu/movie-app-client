@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
 
 // Bootstrap
 import Form from 'react-bootstrap/Form';
@@ -8,13 +9,14 @@ import Button from 'react-bootstrap/Button';
 import collectionService from '../../services/collectionService';
 
 const CreateCollection = () => {
+  const { user } = useAuth();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    collectionService.create(title, description).then((res) => {
+    collectionService.create(title, description, user.userId).then((res) => {
       console.log('Successfully created collection:', title);
     });
   };

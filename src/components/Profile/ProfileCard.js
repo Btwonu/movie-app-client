@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { useAuth } from '../../contexts/AuthContext';
+
 import avatar from '../../assets/icons/avatar.svg';
 import ProfileField from './ProfileField';
-import CollectionCard from './CollectionCard';
+import ProfileCollectionCard from './ProfileCollectionCard';
+import ProfileCollectionCardList from './ProfileCollectionCardList';
 
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
@@ -11,8 +14,6 @@ import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
 
 const StyledSection = styled.section`
   .avatar {
@@ -39,7 +40,9 @@ const StyledSection = styled.section`
   }
 `;
 
-function ProfileCard() {
+const ProfileCard = () => {
+  const { user } = useAuth();
+
   return (
     <StyledSection>
       <Row>
@@ -70,26 +73,11 @@ function ProfileCard() {
                 <section className="collections mb-4">
                   <Card.Title>Movie Collections</Card.Title>
                   <hr />
+
                   <Row className="d-flex">
                     <Col>
-                      <CollectionCard
-                        title="Crime Movies"
-                        numberOfTitles="17"
-                      />
-                    </Col>
-                    <Col>
-                      <CollectionCard
-                        title="Adventure Movies"
-                        numberOfTitles="23"
-                      />
-                    </Col>
-                    <Col>
-                      <CollectionCard title="Horror Films" numberOfTitles="8" />
-                    </Col>
-                    <Col>
-                      <CollectionCard
-                        title="Documentaries"
-                        numberOfTitles="66"
+                      <ProfileCollectionCardList
+                        collections={user?.createdCollections}
                       />
                     </Col>
                   </Row>
@@ -131,6 +119,6 @@ function ProfileCard() {
       </Row>
     </StyledSection>
   );
-}
+};
 
 export default ProfileCard;

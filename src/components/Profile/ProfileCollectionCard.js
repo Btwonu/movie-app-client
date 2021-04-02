@@ -8,7 +8,7 @@ const StyledCard = styled.div`
   }
 `;
 
-function CollectionCard({ title, numberOfTitles }) {
+function ProfileCollectionCard({ title, numberOfTitles }) {
   return (
     <StyledCard className="collection d-flex">
       <p className="collection-image">
@@ -24,4 +24,4 @@ function CollectionCard({ title, numberOfTitles }) {
   );
 }
 
-export default CollectionCard;
+export default ProfileCollectionCard;

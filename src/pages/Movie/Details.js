@@ -31,7 +31,7 @@ class Details extends Component {
   render() {
     return (
       <>
-        {console.log(this.state.movie)}
+        {console.log('details page:', this.state.movie)}
         <h2 className="text-center">{this.state.movie.title}</h2>
 
         <div class="embed-responsive embed-responsive-16by9">
@@ -43,7 +43,7 @@ class Details extends Component {
           ></iframe>
         </div>
 
-        <CollectionModal movieId={this.state.movie.id} />
+        <CollectionModal movieId={this.state.movie.tmdbId} />
       </>
     );
   }

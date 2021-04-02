@@ -1,12 +1,13 @@
 import axios from 'axios';
 
-const create = (title, description) => {
+const create = (title, description, userId) => {
   return axios({
     method: 'post',
     url: '/collections',
     data: {
       title,
       description,
+      userId,
     },
   });
 };

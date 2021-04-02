@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 // Bootstrap
 import { Row } from 'react-bootstrap';
@@ -13,70 +13,50 @@ import movieService from '../../services/movieService';
 // Utils
 import createTitle from '../../utils/createTitle';
 
-class Movies extends Component {
-  constructor(props) {
-    super(props);
+const Movies = ({ match }) => {
+  const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [title, setTitle] = useState('');
+  const prevCategoryRef = useRef();
 
-    this.state = {
-      error: null,
-      isLoading: false,
-      movies: [],
-      title: '',
-    };
-  }
+  useEffect(() => {
+    let currentCategory = match.params.category;
 
-  componentDidMount() {
-    let { category } = this.props.match.params;
-
-    this.setState({ isLoading: true });
-
-    movieService.getMovies(category).then(
-      (movies) => {
-        this.setState({
-          movies,
-          isLoading: false,
-          title: createTitle(category),
-        });
-      },
-      (error) => {
-        this.setState({ error, isLoading: false });
-      }
-    );
-  }
-
-  componentDidUpdate(prevProps) {
-    let { category } = this.props.match.params;
-
-    if (prevProps.match.params.category == category) return;
-    this.setState({ isLoading: true });
-
-    movieService.getMovies(category).then(
-      (movies) => {
-        this.setState({
-          movies,
-          isLoading: false,
-          title: createTitle(category),
-        });
-      },
-      (error) => {
-        this.setState({ error, isLoading: false });
-      }
-    );
-  }
-
-  render() {
-    const { error, isLoading, movies } = this.state;
-    if (isLoading) {
-      return <LoadingSpinner />;
-    } else {
-      return (
-        <>
-          <h2 className="text-center pt-4">{this.state.title} Movies</h2>
-          <MovieCardList movies={movies} />
-        </>
-      );
+    if (prevCategory === currentCategory) {
+      console.log('Categories are the same');
+      return;
     }
+
+    prevCategoryRef.current = currentCategory;
+
+    setIsLoading(true);
+
+    movieService.getMovies(currentCategory).then(
+      (movies) => {
+        setMovies(movies);
+        setIsLoading(false);
+        setTitle(createTitle(currentCategory));
+      },
+      (err) => {
+        setIsLoading(false);
+        setError(err);
+      }
+    );
+  }, []);
+
+  const prevCategory = prevCategoryRef.current;
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  } else {
+    return (
+      <>
+        <h2 className="text-center pt-4">{title} Movies</h2>
+        <MovieCardList movies={movies} />
+      </>
+    );
   }
-}
+};
 
 export default Movies;

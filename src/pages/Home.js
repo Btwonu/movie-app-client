@@ -1,6 +1,6 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
+import movieService from '../services/movieService';
 
 // Components
 import MovieCategoryList from '../components/Movie/MovieCategoryList';
@@ -8,39 +8,31 @@ import LoadingSpinner from '../components/Layout/LoadingSpinner';
 
 const StyledMain = styled.main``;
 
-class Home extends Component {
-  constructor() {
-    super();
+const Home = () => {
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-    this.state = {
-      categories: [],
-      isLoading: false,
-    };
-  }
+  useEffect(() => {
+    setLoading(true);
 
-  componentDidMount() {
-    this.setState({ isLoading: true });
-
-    axios('/movies')
-      .then((categories) => {
-        this.setState({ categories: categories.data, isLoading: false });
+    movieService
+      .getCategories()
+      .then((result) => {
+        setCategories(result.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log('Home error:', err);
       });
-  }
+  }, []);
 
-  render() {
-    if (this.state.isLoading) {
-      return <LoadingSpinner />;
-    } else {
-      return (
-        <StyledMain className="pt-4 d-flex">
-          <MovieCategoryList categories={this.state.categories} />
-        </StyledMain>
-      );
-    }
-  }
-}
+  return loading ? (
+    <LoadingSpinner />
+  ) : (
+    <StyledMain className="pt-4 d-flex">
+      <MovieCategoryList categories={categories} />
+    </StyledMain>
+  );
+};
 
 export default Home;

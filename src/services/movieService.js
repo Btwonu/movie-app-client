@@ -2,6 +2,10 @@ import axios from 'axios';
 
 const BASE_URL = `http://localhost:5001/movie-find-dev/europe-west1/api/movies`;
 
+const getCategories = () => {
+  return axios('/movies');
+};
+
 const getMovies = async (movieType = '', pageNumber) => {
   let url = `/movies`;
   let params = {};
@@ -33,4 +37,5 @@ const getOne = (id) => {
 export default {
   getMovies,
   getOne,
+  getCategories,
 };

@@ -19,8 +19,8 @@ const AuthProvider = ({ children }) => {
     })
       .then((res) => {
         localStorage.setItem('AuthToken', `Bearer ${res.data.JWT}`);
-        console.log('Login done!');
-        // setUser(res.data.userInfo);
+        console.log('Login done!!!');
+        setUser(res.data.userInfo);
       })
       .catch((err) => {
         console.log('Login error:', err);

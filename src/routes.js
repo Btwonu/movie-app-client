@@ -1,7 +1,5 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import { useAuth } from './contexts/AuthContext';
-
 // Pages
 import Home from './pages/Home';
 import Movies from './pages/Movie/Movies';

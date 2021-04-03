@@ -1,62 +1,50 @@
-import { useState, useEffect, useRef } from 'react';
-
-// Bootstrap
-import { Row } from 'react-bootstrap';
+import { useState, useRef, useCallback } from 'react';
 
 // Components
 import MovieCardList from '../../components/Movie/MovieCardList';
 import LoadingSpinner from '../../components/Layout/LoadingSpinner';
 
-// Services
-import movieService from '../../services/movieService';
-
-// Utils
-import createTitle from '../../utils/createTitle';
+// Custom Hooks
+import useGetMovies from '../../hooks/useGetMovies';
 
 const Movies = ({ match }) => {
-  const [movies, setMovies] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [title, setTitle] = useState('');
-  const prevCategoryRef = useRef();
+  const [pageNumber, setPageNumber] = useState(1);
+  const observer = useRef();
 
-  useEffect(() => {
-    let currentCategory = match.params.category;
+  const [title, isLoading, movies, error] = useGetMovies(
+    match.params.category,
+    pageNumber
+  );
 
-    if (prevCategory === currentCategory) {
-      console.log('Categories are the same');
-      return;
-    }
+  const intersectingRef = useCallback(
+    (node) => {
+      if (isLoading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          console.log('Is Intersecting');
+          console.log(entries[0]);
+          setPageNumber((prevPageNumber) => prevPageNumber + 1);
+        }
+      });
 
-    prevCategoryRef.current = currentCategory;
-
-    setIsLoading(true);
-
-    movieService.getMovies(currentCategory).then(
-      (movies) => {
-        setMovies(movies);
-        setIsLoading(false);
-        setTitle(createTitle(currentCategory));
-      },
-      (err) => {
-        setIsLoading(false);
-        setError(err);
+      if (node) {
+        observer.current.observe(node);
       }
-    );
-  }, []);
+    },
+    [isLoading]
+  );
 
-  const prevCategory = prevCategoryRef.current;
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  } else {
-    return (
-      <>
-        <h2 className="text-center pt-4">{title} Movies</h2>
-        <MovieCardList movies={movies} />
-      </>
-    );
-  }
+  return (
+    <>
+      <h2 className="text-center pt-4">{title} Movies</h2>
+      {movies && <MovieCardList movies={movies} />}
+      {isLoading && <LoadingSpinner />}
+      <div style={{ visibility: 'hidden' }} ref={intersectingRef}>
+        Loader
+      </div>
+    </>
+  );
 };
 
 export default Movies;

@@ -16,7 +16,7 @@ class MovieCardList extends Component {
   render() {
     return (
       <Row className="pt-4">
-        {this.props.movies?.map(
+        {this.props.movies.map(
           ({ tmdbId, date, imageUrl, voteAverage, title }) => (
             <Col
               key={tmdbId}

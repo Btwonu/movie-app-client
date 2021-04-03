@@ -6,18 +6,13 @@ import reportWebVitals from './reportWebVitals';
 // Styles
 import './styles/main.scss';
 
-// Routing
-import { BrowserRouter as Router } from 'react-router-dom';
-
 import { AuthProvider } from './contexts/AuthContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-    </Router>
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

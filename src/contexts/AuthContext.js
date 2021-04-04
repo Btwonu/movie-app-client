@@ -57,9 +57,13 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const logout = () => {
-    localStorage.removeItem('AuthToken');
     setUser(null);
   };
+
+  // useEffect(() => {
+  //   // sign up/login
+  //   // set user
+  // }, []);
 
   const authContextValue = {
     user,

@@ -73,7 +73,7 @@ const ProfileCard = () => {
                   <Row className="d-flex">
                     <Col>
                       <ProfileCollectionCardList
-                        collections={user?.createdCollections}
+                        collections={user.createdCollections}
                       />
                     </Col>
                   </Row>

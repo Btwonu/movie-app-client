@@ -1,4 +1,4 @@
-import { Component, useState, useEffect } from 'react';
+import { Component } from 'react';
 
 // Components
 import CollectionModal from '../../components/Collection/CollectionModal';
@@ -15,30 +15,27 @@ class Details extends Component {
     this.state = {
       movie: {},
       trailer: '',
-      loading: false,
+      isLoading: false,
     };
-    console.log('from details', this.props.match.params);
   }
 
   componentDidMount() {
-    this.setState({ loading: true });
+    this.setState({ isLoading: true });
 
     let { movieId } = this.props.match.params;
-    console.log('from details', movieId);
 
-    movieService.getOne(movieId).then((result) => {
-      console.log('thend getOne');
-      this.setState({ movie: result.data });
+    movieService.getOne(movieId).then((movie) => {
+      this.setState({ movie });
 
-      youtubeService.getTrailer(this.state.movie.title).then((trailer) => {
+      youtubeService.getTrailer(movie.title).then((trailer) => {
         this.setState({ trailer });
-        this.setState({ loading: false });
+        this.setState({ isLoading: false });
       });
     });
   }
 
   render() {
-    if (this.state.loading) {
+    if (this.state.isLoading) {
       return <LoadingSpinner />;
     } else {
       return (
@@ -60,51 +57,5 @@ class Details extends Component {
     }
   }
 }
-
-// const Details = ({ match }) => {
-//   const [movie, setMovie] = useState({});
-//   const [trailer, setTrailer] = useState('');
-//   const [loading, setLoading] = useState(false);
-//   const [movieTitle, setMovieTitle] = useState('');
-
-//   useEffect(() => {
-//     setLoading(true);
-
-//     let { movieId } = match.params;
-
-//     movieService.getOne(movieId).then((result) => {
-//       setMovie(result.data);
-//       setMovieTitle(movie.title);
-//     });
-//   }, []);
-
-//   useEffect(() => {
-//     youtubeService.getTrailer(movieTitle).then((trailer) => {
-//       setTrailer(trailer);
-//       setLoading(false);
-//     });
-//   }, [movieTitle]);
-
-//   if (loading) {
-//     return <LoadingSpinner />;
-//   } else {
-//     return (
-//       <>
-//         <h2 className="text-center">{movie.title}</h2>
-
-//         <div class="embed-responsive embed-responsive-16by9">
-//           <iframe
-//             src={trailer}
-//             title="YouTube video player"
-//             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-//             allowFullScreen
-//           ></iframe>
-//         </div>
-
-//         <CollectionModal movieId={movie.tmdbId} />
-//       </>
-//     );
-//   }
-// };
 
 export default Details;

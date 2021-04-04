@@ -1,14 +1,12 @@
 import { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-
-// import { useAuth } from '../../contexts/AuthContext';
 
 // Bootstrap
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 
 class RegisterForm extends Component {
   constructor() {
@@ -28,7 +26,8 @@ class RegisterForm extends Component {
 
     axios({
       method: 'post',
-      url: '/auth/register',
+      url:
+        'http://localhost:5001/movie-find-dev/europe-west1/api/auth/register',
       data: {
         username,
         email,
@@ -39,7 +38,6 @@ class RegisterForm extends Component {
       .then((res) => {
         localStorage.setItem('AuthToken', `Bearer ${res.data.JWT}`);
         console.log('Registration done!');
-        this.props.history.push('/');
       })
       .catch((err) => {
         console.log('Registration error:', err);
@@ -115,4 +113,4 @@ class RegisterForm extends Component {
   }
 }
 
-export default withRouter(RegisterForm);
+export default RegisterForm;

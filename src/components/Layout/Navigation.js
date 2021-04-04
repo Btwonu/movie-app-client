@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
 function Navigation() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   return (
     <Navbar
@@ -37,7 +37,6 @@ function Navigation() {
             <Nav.Link as={Link} to="/users/user">
               Profile
             </Nav.Link>
-            <Nav.Link onClick={logout}>Logout</Nav.Link>
           </>
         ) : (
           <>

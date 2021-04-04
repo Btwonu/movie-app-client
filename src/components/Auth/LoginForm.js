@@ -10,7 +10,6 @@ import { useAuth } from '../../contexts/AuthContext';
 const LoginForm = ({ history }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [redirect, setRedirect] = useState(false);
 
   const { login, user } = useAuth();
 
@@ -18,7 +17,7 @@ const LoginForm = ({ history }) => {
     e.preventDefault();
 
     login(email, password).then(() => {
-      // history.push('/');
+      history.push('/');
     });
   };
 

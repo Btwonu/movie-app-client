@@ -1,31 +1,17 @@
 import { useEffect, useState } from 'react';
-
-// Services
 import collectionService from '../../services/collectionService';
 
 // Components
 import MovieCardList from '../../components/Movie/MovieCardList';
 import LoadingSpinner from '../../components/Layout/LoadingSpinner';
 
-// Bootstrap
-import Button from 'react-bootstrap/Button';
-
-const CollectionDetails = ({ match, history }) => {
+const CollectionDetails = ({ match }) => {
   const [collection, setCollection] = useState({});
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const deleteHandler = () => {
-    collectionService
-      .deleteCollection(match.params.collectionId)
-      .then((res) => {
-        console.log('Collection deleted', res);
-        history.push('/collections');
-      });
-  };
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
+    setIsLoading(true);
     let { collectionId } = match.params;
 
     collectionService
@@ -33,24 +19,22 @@ const CollectionDetails = ({ match, history }) => {
       .then((res) => {
         setCollection(res.data.collection);
         setMovies(res.data.movies);
-        setLoading(false);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.error({ err });
       });
   }, []);
 
-  if (loading) {
+  if (isLoading) {
     return <LoadingSpinner />;
   } else {
     return (
       <div>
-        <h2 className="text-center">{collection.title}</h2>
-        <p className="text-center">{collection.description}</p>
+        Details
+        <h2>{collection.title}</h2>
+        <p>{match.params.collectionId}</p>
         <MovieCardList movies={movies} />
-        <Button onClick={deleteHandler} variant="danger">
-          Delete Collection
-        </Button>
       </div>
     );
   }

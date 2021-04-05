@@ -32,8 +32,6 @@ const CollectionModal = ({ movieId }) => {
 
   return (
     <>
-      <p>{JSON.stringify(user)}</p>
-
       <Button variant="primary" onClick={handleShow}>
         Add to Collection
       </Button>

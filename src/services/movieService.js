@@ -27,10 +27,10 @@ const getMovies = async (movieType = '', pageNumber) => {
 };
 
 const getOne = (id) => {
-  let url = `http://localhost:5001/movie-find-dev/europe-west1/api/movies/${id}`;
+  let url = `/movies/${id}`;
 
-  return fetch(url)
-    .then((res) => res.json())
+  return axios(url)
+    .then((res) => res.data)
     .catch((err) => console.error(err));
 };
 

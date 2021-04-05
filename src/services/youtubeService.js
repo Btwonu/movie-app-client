@@ -1,17 +1,27 @@
+import axios from 'axios';
 const API_KEY = 'AIzaSyC9imxdDkHUgZhYKqbWqbC4jM8YpOzQQjc';
 
 const getTrailer = (movieTitle) => {
   let query = `${movieTitle} movie trailer`;
   let url = `https://youtube.googleapis.com/youtube/v3/search?q=${query}'&type=video&key=${API_KEY}`;
 
+  return new Promise(function (resolve, reject) {
+    reject('Very rejected from youtubeService');
+    fetch(url)
+      .then((res) => res.json())
+      .then((res) => {
+        let videoUrlEnding = res.items[0].id.videoId;
+        resolve(`https://www.youtube.com/embed/${videoUrlEnding}`);
+      })
+      .catch(reject);
+  });
   return fetch(url)
     .then((res) => res.json())
     .then((res) => {
       let videoUrlEnding = res.items[0].id.videoId;
       // https://www.youtube.com/embed/odM92ap8_c0
       return `https://www.youtube.com/embed/${videoUrlEnding}`;
-    })
-    .catch((err) => console.error(err));
+    });
 };
 
 export default {

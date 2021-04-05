@@ -46,10 +46,10 @@ const CollectionModal = ({ movieId }) => {
               <Form.Label>Select</Form.Label>
               <Form.Control as="select" onChange={handleChange}>
                 <option value="">Choose Collection</option>
-                {user?.createdCollections?.map((collection) => {
+                {user?.createdCollections?.map(({ title, collectionId }) => {
                   return (
-                    <option value={collection.collectionId}>
-                      {collection.title}
+                    <option key={collectionId} value={collectionId}>
+                      {title}
                     </option>
                   );
                 })}

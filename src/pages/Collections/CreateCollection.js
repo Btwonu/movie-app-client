@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
 // Bootstrap
@@ -8,7 +9,7 @@ import Button from 'react-bootstrap/Button';
 // Services
 import collectionService from '../../services/collectionService';
 
-const CreateCollection = () => {
+const CreateCollection = ({ history }) => {
   const { user } = useAuth();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -18,6 +19,7 @@ const CreateCollection = () => {
 
     collectionService.create(title, description, user.userId).then((res) => {
       console.log('Successfully created collection:', title);
+      history.push('/collections');
     });
   };
 
@@ -65,4 +67,4 @@ const CreateCollection = () => {
   );
 };
 
-export default CreateCollection;
+export default withRouter(CreateCollection);

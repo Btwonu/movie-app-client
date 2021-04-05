@@ -47,7 +47,6 @@ class Details extends Component {
       return (
         <>
           <h2 className="text-center mt-4">{this.state.movie.title}</h2>
-          {console.log('trailer', this.state.movie)}
           {this.state.trailer && (
             <div className="embed-responsive embed-responsive-16by9">
               <iframe
@@ -63,7 +62,7 @@ class Details extends Component {
 
           <p>Year: {this.state.movie.release_date?.split('-')[0]}</p>
 
-          <CollectionModal movieId={this.state.movie.tmdbId} />
+          <CollectionModal movieId={this.state.movie.id} />
         </>
       );
     }

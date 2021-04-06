@@ -46,15 +46,13 @@ const CollectionDetails = ({ match, history }) => {
   } else {
     return (
       <div>
-        Details
-        <h2>{collection.title}</h2>
-        <p>{collectionId}</p>
+        <h2 className="text-center">{collection.title}</h2>
         {user && user.userId == collection.creatorId ? (
           <Button onClick={deleteHandler} variant="danger">
-            Delete
+            Delete Collection
           </Button>
         ) : null}
-        <MovieCardList movies={movies} />
+        <MovieCardList movies={movies} removeButton={true} />
       </div>
     );
   }

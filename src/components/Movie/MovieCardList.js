@@ -4,6 +4,7 @@ import { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 // Components
 import MovieCard from './MovieCard';
@@ -11,6 +12,7 @@ import MovieCard from './MovieCard';
 class MovieCardList extends Component {
   constructor(props) {
     super(props);
+    console.log(this.props.movies);
   }
 
   render() {
@@ -33,6 +35,7 @@ class MovieCardList extends Component {
                 imageUrl={imageUrl}
                 rating={voteAverage}
                 year={date}
+                removeButton={this.props.removeButton}
               />
             </Col>
           )

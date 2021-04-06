@@ -44,6 +44,7 @@ class Details extends Component {
     if (this.state.isLoading) {
       return <LoadingSpinner />;
     } else {
+      console.log('Movie:', this.state.movie);
       return (
         <>
           <h2 className="text-center mt-4">{this.state.movie.title}</h2>

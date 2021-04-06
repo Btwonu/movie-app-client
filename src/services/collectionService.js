@@ -20,13 +20,20 @@ const getOne = (collectionId) => {
 
 const addMovieToCollection = (movieId, collectionId) => {
   return axios({
-    method: 'post',
     url: `/collections/${collectionId}/movies/${movieId}`,
+    method: 'post',
   });
+};
+
+const deleteCollection = (collectionId) => {
+  console.log(`Collection ${collectionId} deleted`);
+
+  return axios({ url: `/collections/${collectionId}`, method: 'delete' });
 };
 
 export default {
   create,
   getOne,
   addMovieToCollection,
+  deleteCollection,
 };

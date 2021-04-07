@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
+import collectionService from '../../services/collectionService';
+
 // Bootstrap
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -53,11 +55,24 @@ const StyledDiv = styled.div`
   } */
 `;
 
-const MovieCard = ({ title, imageUrl, rating, year, id, removeButton }) => {
+const MovieCard = ({
+  title,
+  imageUrl,
+  rating,
+  year,
+  id,
+  removeButton,
+  collectionId,
+  handleRemoveMovie,
+}) => {
   return (
     <StyledDiv>
       {removeButton ? (
-        <Button variant="light" className="close">
+        <Button
+          onClick={() => handleRemoveMovie(id, collectionId)}
+          variant="light"
+          className="close"
+        >
           x
         </Button>
       ) : null}

@@ -25,6 +25,13 @@ const addMovieToCollection = (movieId, collectionId) => {
   });
 };
 
+const removeMovieFromCollection = (movieId, collectionId) => {
+  return axios({
+    url: `/collections/${collectionId}/movies/${movieId}`,
+    method: 'delete',
+  });
+};
+
 const deleteCollection = (collectionId) => {
   console.log(`Collection ${collectionId} deleted`);
 
@@ -36,4 +43,5 @@ export default {
   getOne,
   addMovieToCollection,
   deleteCollection,
+  removeMovieFromCollection,
 };

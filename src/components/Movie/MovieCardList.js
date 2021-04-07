@@ -36,6 +36,8 @@ class MovieCardList extends Component {
                 rating={voteAverage}
                 year={date}
                 removeButton={this.props.removeButton}
+                collectionId={this.props.collectionId}
+                handleRemoveMovie={this.props.handleRemoveMovie}
               />
             </Col>
           )

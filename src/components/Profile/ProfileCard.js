@@ -6,6 +6,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import avatar from '../../assets/icons/avatar.svg';
 import ProfileField from './ProfileField';
 import ProfileCollectionCardList from './ProfileCollectionCardList';
+import LoadingSpinner from '../Layout/LoadingSpinner';
 
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
@@ -39,7 +40,7 @@ const StyledSection = styled.section`
   }
 `;
 
-const ProfileCard = () => {
+const ProfileCard = ({ collections, loadingCollections }) => {
   const { user } = useAuth();
 
   return (
@@ -70,13 +71,16 @@ const ProfileCard = () => {
                   <Card.Title>Movie Collections</Card.Title>
                   <hr />
 
-                  <Row className="d-flex">
-                    <Col>
-                      <ProfileCollectionCardList
-                        collections={user?.createdCollections}
-                      />
-                    </Col>
-                  </Row>
+                  {loadingCollections ? (
+                    <LoadingSpinner />
+                  ) : (
+                    <Row className="d-flex">
+                      <Col>
+                        <ProfileCollectionCardList collections={collections} />
+                      </Col>
+                    </Row>
+                  )}
+
                   <Button as={Link} to="/collections/create">
                     Create Collection
                   </Button>

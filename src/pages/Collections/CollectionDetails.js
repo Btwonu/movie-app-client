@@ -9,7 +9,7 @@ import LoadingSpinner from '../../components/Layout/LoadingSpinner';
 // Bootstrap
 import Button from 'react-bootstrap/Button';
 
-const CollectionDetails = ({ match }) => {
+const CollectionDetails = ({ match, history }) => {
   const { user } = useAuth();
   const [collection, setCollection] = useState({});
   const [movies, setMovies] = useState([]);
@@ -47,6 +47,7 @@ const CollectionDetails = ({ match }) => {
       .deleteCollection(collectionId)
       .then((res) => {
         console.log(res.data);
+        history.push('/collections');
       })
       .catch((err) => console.log(err));
   };

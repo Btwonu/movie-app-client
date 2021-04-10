@@ -17,6 +17,25 @@ const isEmpty = (string) => {
   else return false;
 };
 
+export const validateLoginData = (email, password) => {
+  const errors = {};
+
+  if (isEmpty(email)) {
+    errors.email = 'Must not be empty';
+  } else if (!isEmail(email)) {
+    errors.email = 'Must be a valid email address';
+  }
+
+  if (isEmpty(password)) {
+    errors.password = 'Must not be empty';
+  }
+
+  return {
+    errors,
+    valid: Object.keys(errors).length === 0 ? true : false,
+  };
+};
+
 export const validateSignupData = (
   username,
   email,
@@ -28,7 +47,6 @@ export const validateSignupData = (
   if (isEmpty(email)) {
     errors.email = 'Must not be empty';
   } else if (!isEmail(email)) {
-    console.log('email wrong');
     errors.email = 'Must be a valid email address';
   }
 

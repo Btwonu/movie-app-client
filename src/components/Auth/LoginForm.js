@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 
+import { validateLoginData } from '../../utils/validators';
+
 // Bootstrap
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -13,12 +15,22 @@ import ErrorNotification from '../Utility/ErrorNotification';
 const LoginForm = ({ history }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
+  const [notificationError, setNotificationError] = useState(null);
+  const [validationErrors, setValidationErrors] = useState({});
 
   const { login, user } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setValidationErrors({});
+
+    let { errors, valid } = validateLoginData(email, password);
+
+    if (!valid) {
+      setValidationErrors(errors);
+      return;
+    }
 
     login(email, password)
       .then(() => {
@@ -28,7 +40,7 @@ const LoginForm = ({ history }) => {
         let { general } = err.response.data;
 
         if (general) {
-          setError(general);
+          setNotificationError(general);
         }
 
         console.dir(err);
@@ -59,6 +71,9 @@ const LoginForm = ({ history }) => {
             value={email}
             onChange={handleChange}
           />
+          <div className="error">
+            {validationErrors.email && validationErrors.email}
+          </div>
         </Form.Group>
 
         <Form.Group id="login-password">
@@ -70,6 +85,9 @@ const LoginForm = ({ history }) => {
             value={password}
             onChange={handleChange}
           />
+          <div className="error">
+            {validationErrors.password && validationErrors.password}
+          </div>
         </Form.Group>
 
         <Button variant="primary" type="submit" block>
@@ -77,7 +95,12 @@ const LoginForm = ({ history }) => {
         </Button>
       </Form>
 
-      {error && <ErrorNotification message={error} setError={setError} />}
+      {notificationError && (
+        <ErrorNotification
+          message={notificationError}
+          setNotificationError={setNotificationError}
+        />
+      )}
     </>
   );
 };

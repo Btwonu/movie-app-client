@@ -11,6 +11,7 @@ import Collections from './pages/Collections/Collections';
 import CollectionDetails from './pages/Collections/CollectionDetails';
 import CreateCollection from './pages/Collections/CreateCollection';
 import Users from './pages/Users';
+import Page404 from './pages/Page404';
 
 import Layout from './components/Layout/Layout';
 
@@ -49,6 +50,7 @@ const UnauthenticatedRoutes = () => {
           <Route exact path="/" component={Home} />
           <Route path="/auth/login" component={Login} />
           <Route path="/auth/register" component={Register} />
+          <Route path="*" component={Page404} />
         </Switch>
       </Layout>
     </BrowserRouter>

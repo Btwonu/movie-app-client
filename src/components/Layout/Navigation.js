@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
 function Navigation() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
     <Navbar
@@ -26,9 +26,9 @@ function Navigation() {
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/users">
+            {/* <Nav.Link as={Link} to="/users">
               Users
-            </Nav.Link>
+            </Nav.Link> */}
 
             <Nav.Link as={Link} to="/collections">
               Collections
@@ -37,6 +37,7 @@ function Navigation() {
             <Nav.Link as={Link} to="/users/user">
               Profile
             </Nav.Link>
+            <Nav.Link onClick={logout}>Logout</Nav.Link>
           </>
         ) : (
           <>

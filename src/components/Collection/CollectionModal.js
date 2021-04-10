@@ -21,6 +21,7 @@ const CollectionModal = ({ movieId }) => {
     console.log(
       `Collection with id: ${chosenCollectionId} was chosen! Add movie with id: ${movieId} to it!`
     );
+
     collectionService.addMovieToCollection(movieId, chosenCollectionId);
 
     setChosenCollectionId('');

@@ -5,7 +5,7 @@ const Page404 = () => {
     <>
       <img className="mt-4 rounded mx-auto d-block" src={notFound}></img>
       <h3 className="mt-4 text-center">
-        You should log in if you want to use our app's features.
+        You should log in if you want to use the app's features.
       </h3>
     </>
   );

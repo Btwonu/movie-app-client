@@ -6,7 +6,6 @@ const getTrailer = (movieTitle) => {
   let url = `https://youtube.googleapis.com/youtube/v3/search?q=${query}'&type=video&key=${API_KEY}`;
 
   return new Promise(function (resolve, reject) {
-    reject('Very rejected from youtubeService');
     fetch(url)
       .then((res) => res.json())
       .then((res) => {

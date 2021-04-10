@@ -59,7 +59,7 @@ class Details extends Component {
             </div>
           )}
 
-          <p>{this.state.movie.overview}</p>
+          <h6 className="mt-4 text-center">{this.state.movie.overview}</h6>
 
           <p>Year: {this.state.movie.release_date?.split('-')[0]}</p>
 

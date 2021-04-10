@@ -43,21 +43,12 @@ const AuthProvider = ({ children }) => {
         email,
         password,
       },
-    })
-      .then((res) => {
-        localStorage.setItem('AuthToken', `Bearer ${res.data.JWT}`);
-        console.log('Login done!!!');
+    }).then((res) => {
+      localStorage.setItem('AuthToken', `Bearer ${res.data.JWT}`);
+      console.log('Login done!!!');
 
-        // setUser(res.data.userInfo);
-      })
-      .catch((err) => {
-        console.log('Login error:', err);
-        // handle error
-        // this.setState({
-        //   errors: err.response.data,
-        //   loading: false,
-        // });
-      });
+      // setUser(res.data.userInfo);
+    });
   };
 
   const logout = () => {

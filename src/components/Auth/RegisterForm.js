@@ -1,5 +1,8 @@
 import { Component } from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+
+import { validateSignupData } from '../../utils/validators';
 
 // Bootstrap
 import Form from 'react-bootstrap/Form';
@@ -9,25 +12,38 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 
 class RegisterForm extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       username: '',
       email: '',
       password: '',
       confirmPassword: '',
+      errors: {},
     };
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
+    this.setState({ errors: {} });
 
     let { username, email, password, confirmPassword } = this.state;
 
+    let { errors, valid } = validateSignupData(
+      username,
+      email,
+      password,
+      confirmPassword
+    );
+
+    if (!valid) {
+      this.setState({ errors });
+      return;
+    }
+
     axios({
       method: 'post',
-      url:
-        'http://localhost:5001/movie-find-dev/europe-west1/api/auth/register',
+      url: 'http://localhost:5001/movie-find-dev/europe-west1/api/auth/register',
       data: {
         username,
         email,
@@ -69,6 +85,9 @@ class RegisterForm extends Component {
               value={this.state.username}
               onChange={this.handleChange}
             />
+            <div className="error">
+              {this.state.errors.username && this.state.errors.username}
+            </div>
           </Col>
         </Form.Group>
 
@@ -81,6 +100,9 @@ class RegisterForm extends Component {
             value={this.state.email}
             onChange={this.handleChange}
           />
+          <div className="error">
+            {this.state.errors.email && this.state.errors.email}
+          </div>
         </Form.Group>
 
         <Form.Group id="register-password">
@@ -92,6 +114,9 @@ class RegisterForm extends Component {
             value={this.state.password}
             onChange={this.handleChange}
           />
+          <div className="error">
+            {this.state.errors.password && this.state.errors.password}
+          </div>
         </Form.Group>
 
         <Form.Group id="register-confirm">
@@ -103,6 +128,10 @@ class RegisterForm extends Component {
             value={this.state.confirmPassword}
             onChange={this.handleChange}
           />
+          <div className="error">
+            {this.state.errors.confirmPassword &&
+              this.state.errors.confirmPassword}
+          </div>
         </Form.Group>
 
         <Button variant="primary" type="submit" block>

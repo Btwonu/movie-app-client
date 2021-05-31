@@ -6,34 +6,11 @@ const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  const login = (email, password) => {
-    return axios({
-      method: 'post',
-      url: '/auth/login',
-      data: {
-        email,
-        password,
-      },
-    })
-      .then((res) => {
-        localStorage.setItem('AuthToken', `Bearer ${res.data.JWT}`);
-        console.log('Login done!!!');
-        setUser(res.data.userInfo);
-      })
-      .catch((err) => {
-        console.log('Login error:', err);
-        // handle error
-        // this.setState({
-        //   errors: err.response.data,
-        //   loading: false,
-        // });
-      });
-  };
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     console.log('Context useEffect called');
+    setLoading(true);
     const token = localStorage.getItem('AuthToken');
 
     if (token) {
@@ -43,6 +20,7 @@ const AuthProvider = ({ children }) => {
         console.log('Token has expired');
         // token expired
       } else {
+        console.log('Token is OK');
         axios.defaults.headers.common['Authorization'] = token;
 
         axios({
@@ -51,10 +29,27 @@ const AuthProvider = ({ children }) => {
         }).then((user) => {
           console.log('FROM AUTH CONTEXT:', user.data);
           setUser(user.data);
+          setLoading(false);
         });
       }
     }
   }, []);
+
+  const login = (email, password) => {
+    return axios({
+      method: 'post',
+      url: '/auth/login',
+      data: {
+        email,
+        password,
+      },
+    }).then((res) => {
+      localStorage.setItem('AuthToken', `Bearer ${res.data.JWT}`);
+      console.log('Login done!!!');
+
+      // setUser(res.data.userInfo);
+    });
+  };
 
   const logout = () => {
     setUser(null);

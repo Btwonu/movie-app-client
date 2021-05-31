@@ -17,7 +17,7 @@ class CollectionCardList extends Component {
     return (
       <Row className="pt-4">
         {this.props.collections.map(
-          ({ collectionId, creator, name, movies, description }) => (
+          ({ collectionId, creator, title, movies, description }) => (
             <Col
               key={collectionId}
               xs="12"
@@ -30,7 +30,7 @@ class CollectionCardList extends Component {
               <CollectionCard
                 collectionId={collectionId}
                 creator={creator}
-                name={name}
+                title={title}
                 movieCount={movies.length}
                 description={description}
               />

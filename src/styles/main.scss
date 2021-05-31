@@ -5,6 +5,12 @@ $accent-color: #c62368;
   padding-top: 56px;
 }
 
+.error {
+  color: crimson;
+  font-size: 0.8rem;
+  height: 1rem;
+}
+
 @import '~material-icons/iconfont/material-icons.scss';
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 

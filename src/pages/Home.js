@@ -13,17 +13,24 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    let isCancelled = false;
     setLoading(true);
 
     movieService
       .getCategories()
       .then((result) => {
-        setCategories(result.data);
-        setLoading(false);
+        if (!isCancelled) {
+          setCategories(result.data);
+          setLoading(false);
+        }
       })
       .catch((err) => {
         console.log('Home error:', err);
       });
+
+    return () => {
+      isCancelled = true;
+    };
   }, []);
 
   return loading ? (

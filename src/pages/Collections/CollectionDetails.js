@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
-
-// Services
+import { useEffect, useState, useRef } from 'react';
 import collectionService from '../../services/collectionService';
+import { useAuth } from '../../contexts/AuthContext';
 
 // Components
 import MovieCardList from '../../components/Movie/MovieCardList';
@@ -11,34 +10,47 @@ import LoadingSpinner from '../../components/Layout/LoadingSpinner';
 import Button from 'react-bootstrap/Button';
 
 const CollectionDetails = ({ match, history }) => {
+  const { user } = useAuth();
   const [collection, setCollection] = useState({});
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
+  let { collectionId } = match.params;
 
-  const deleteHandler = () => {
+  const handleRemoveMovie = (movieId, collectionId) => {
     collectionService
-      .deleteCollection(match.params.collectionId)
+      .removeMovieFromCollection(movieId, collectionId)
       .then((res) => {
-        console.log('Collection deleted', res);
-        history.push('/collections');
+        console.warn('Movie removed from collection');
+        setMovies([...movies]); // movie value changed so state can update
       });
   };
 
   useEffect(() => {
     setLoading(true);
-    let { collectionId } = match.params;
 
     collectionService
       .getOne(collectionId)
       .then((res) => {
         setCollection(res.data.collection);
-        setMovies(res.data.movies);
+        if (res.data.movies.length !== movies.length) {
+          setMovies(res.data.movies);
+        }
         setLoading(false);
       })
       .catch((err) => {
         console.error({ err });
       });
-  }, []);
+  }, [movies]);
+
+  const deleteHandler = () => {
+    collectionService
+      .deleteCollection(collectionId)
+      .then((res) => {
+        console.log(res.data);
+        history.push('/collections');
+      })
+      .catch((err) => console.log(err));
+  };
 
   if (loading) {
     return <LoadingSpinner />;
@@ -46,11 +58,17 @@ const CollectionDetails = ({ match, history }) => {
     return (
       <div>
         <h2 className="text-center">{collection.title}</h2>
-        <p className="text-center">{collection.description}</p>
-        <MovieCardList movies={movies} />
-        <Button onClick={deleteHandler} variant="danger">
-          Delete Collection
-        </Button>
+        {user && user.userId == collection.creatorId ? (
+          <Button onClick={deleteHandler} variant="danger">
+            Delete Collection
+          </Button>
+        ) : null}
+        <MovieCardList
+          movies={movies}
+          removeButton={true}
+          collectionId={collectionId}
+          handleRemoveMovie={handleRemoveMovie}
+        />
       </div>
     );
   }

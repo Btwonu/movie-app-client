@@ -10,7 +10,8 @@ import Register from './pages/Auth/Register';
 import Collections from './pages/Collections/Collections';
 import CollectionDetails from './pages/Collections/CollectionDetails';
 import CreateCollection from './pages/Collections/CreateCollection';
-import Users from './pages/Users';
+// import Users from './pages/Users';
+import Page404 from './pages/Page404';
 
 import Layout from './components/Layout/Layout';
 
@@ -33,7 +34,7 @@ const AuthenticatedRoutes = () => {
             path="/collections/:collectionId"
             component={CollectionDetails}
           />
-          <Route exact path="/users" component={Users} />
+          {/* <Route exact path="/users" component={Users} /> */}
           <Route path="/users/user" component={Profile} />
         </Switch>
       </Layout>
@@ -49,6 +50,7 @@ const UnauthenticatedRoutes = () => {
           <Route exact path="/" component={Home} />
           <Route path="/auth/login" component={Login} />
           <Route path="/auth/register" component={Register} />
+          <Route path="*" component={Page404} />
         </Switch>
       </Layout>
     </BrowserRouter>

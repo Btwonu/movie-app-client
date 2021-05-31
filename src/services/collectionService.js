@@ -20,13 +20,22 @@ const getOne = (collectionId) => {
 
 const addMovieToCollection = (movieId, collectionId) => {
   return axios({
-    method: 'post',
     url: `/collections/${collectionId}/movies/${movieId}`,
+    method: 'post',
+  });
+};
+
+const removeMovieFromCollection = (movieId, collectionId) => {
+  return axios({
+    url: `/collections/${collectionId}/movies/${movieId}`,
+    method: 'delete',
   });
 };
 
 const deleteCollection = (collectionId) => {
-  return axios({ method: 'delete', url: `/collections/${collectionId}` });
+  console.log(`Collection ${collectionId} deleted`);
+
+  return axios({ url: `/collections/${collectionId}`, method: 'delete' });
 };
 
 export default {
@@ -34,4 +43,5 @@ export default {
   getOne,
   addMovieToCollection,
   deleteCollection,
+  removeMovieFromCollection,
 };

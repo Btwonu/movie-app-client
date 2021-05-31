@@ -26,9 +26,9 @@ function Navigation() {
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/users">
+            {/* <Nav.Link as={Link} to="/users">
               Users
-            </Nav.Link>
+            </Nav.Link> */}
 
             <Nav.Link as={Link} to="/collections">
               Collections

@@ -21,6 +21,7 @@ const CollectionModal = ({ movieId }) => {
     console.log(
       `Collection with id: ${chosenCollectionId} was chosen! Add movie with id: ${movieId} to it!`
     );
+
     collectionService.addMovieToCollection(movieId, chosenCollectionId);
 
     setChosenCollectionId('');
@@ -32,8 +33,6 @@ const CollectionModal = ({ movieId }) => {
 
   return (
     <>
-      <p>{JSON.stringify(user)}</p>
-
       <Button variant="primary" onClick={handleShow}>
         Add to Collection
       </Button>
@@ -48,10 +47,10 @@ const CollectionModal = ({ movieId }) => {
               <Form.Label>Select</Form.Label>
               <Form.Control as="select" onChange={handleChange}>
                 <option value="">Choose Collection</option>
-                {user?.createdCollections?.map((collection) => {
+                {user?.createdCollections?.map(({ title, collectionId }) => {
                   return (
-                    <option value={collection.collectionId}>
-                      {collection.title}
+                    <option key={collectionId} value={collectionId}>
+                      {title}
                     </option>
                   );
                 })}

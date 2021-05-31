@@ -3,14 +3,18 @@ import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
+import collectionService from '../../services/collectionService';
+
 // Bootstrap
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 const StyledDiv = styled.div`
   width: 250px;
   height: 100%;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
   border-radius: 8px;
+  position: relative;
 
   .card {
     height: 100%;
@@ -34,14 +38,45 @@ const StyledDiv = styled.div`
     }
   }
 
+  .close {
+    position: absolute;
+    top: 4px;
+    right: 15px;
+    z-index: 1;
+    width: 25px;
+    border-radius: 100%;
+  }
+
+  .close:hover {
+  }
+
   /* a:hover {
     text-decoration: none;
   } */
 `;
 
-const MovieCard = ({ title, imageUrl, rating, year, id }) => {
+const MovieCard = ({
+  title,
+  imageUrl,
+  rating,
+  year,
+  id,
+  removeButton,
+  collectionId,
+  handleRemoveMovie,
+}) => {
   return (
     <StyledDiv>
+      {removeButton ? (
+        <Button
+          onClick={() => handleRemoveMovie(id, collectionId)}
+          variant="light"
+          className="close"
+        >
+          x
+        </Button>
+      ) : null}
+
       <Card
         as={Link}
         to={`/movies/${id}`}

@@ -20,14 +20,14 @@ const StyledCard = styled.div`
 function CollectionCard({
   collectionId,
   creator,
-  name,
+  title,
   description,
   movieCount,
 }) {
   return (
     <StyledCard>
       <Card className="text-center">
-        <Card.Header>{name}</Card.Header>
+        <Card.Header>{title}</Card.Header>
         <Card.Body>
           <Card.Text>{description}</Card.Text>
           <Button

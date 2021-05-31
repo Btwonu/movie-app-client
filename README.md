@@ -33,6 +33,8 @@ This app is made for the SoftUni ReactJS March 2021 final exam
 - Client routes are separated into two different (authenticated/unauthenticated) sections
 - Context API is used to update the user information and provide it to components
 - Youtube API is used to fetch movie trailers
+- React Bootstrap is used for styling
+- Styled Components is used to encapsulate styles for components
 
 ### Difficulties and problems
 

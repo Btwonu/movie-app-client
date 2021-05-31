@@ -1,7 +1,7 @@
-import { Route, Switch } from 'react-router-dom';
+import { useEffect } from 'react';
 import axios from 'axios';
 
-import { AuthContext, useAuth } from './contexts/AuthContext';
+import { useAuth } from './contexts/AuthContext';
 
 // Components
 import { AuthenticatedRoutes, UnauthenticatedRoutes } from './routes';

@@ -22,7 +22,6 @@ const AuthProvider = ({ children }) => {
 
       if (decodedToken.exp * 1000 < Date.now()) {
         console.log('Token has expired');
-        // token expired
       } else {
         console.log('Token is OK');
         axios.defaults.headers.common['Authorization'] = token;
@@ -31,7 +30,6 @@ const AuthProvider = ({ children }) => {
           method: 'get',
           url: `/users/profile`,
         }).then((user) => {
-          console.log('FROM AUTH CONTEXT:', user.data);
           setUser(user.data);
           setLoading(false);
         });
@@ -40,18 +38,14 @@ const AuthProvider = ({ children }) => {
   };
 
   const login = (email, password) => {
+    const data = { email, password };
+
     return axios({
       method: 'post',
       url: '/auth/login',
-      data: {
-        email,
-        password,
-      },
+      data,
     }).then((res) => {
       localStorage.setItem('AuthToken', `Bearer ${res.data.JWT}`);
-      console.log('Login done!!!');
-
-      // setUser(res.data.userInfo);
     });
   };
 
@@ -66,6 +60,7 @@ const AuthProvider = ({ children }) => {
 
   const authContextValue = {
     user,
+    updateUser,
     loading,
     login,
     logout,

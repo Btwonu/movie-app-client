@@ -18,7 +18,7 @@ const LoginForm = ({ history }) => {
   const [notificationError, setNotificationError] = useState(null);
   const [validationErrors, setValidationErrors] = useState({});
 
-  const { login } = useAuth();
+  const { login, updateUser } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,6 +35,7 @@ const LoginForm = ({ history }) => {
     login(email, password)
       .then(() => {
         history.push('/');
+        updateUser();
       })
       .catch((err) => {
         let { general } = err.response.data;

@@ -26,11 +26,11 @@ const CreateCollection = ({ history }) => {
   const handleChange = (e) => {
     let { name, value } = e.target;
 
-    if (name == 'name') {
+    if (name === 'name') {
       setTitle(value);
     }
 
-    if (name == 'description') {
+    if (name === 'description') {
       setDescription(value);
     }
   };

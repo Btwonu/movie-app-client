@@ -38,10 +38,12 @@ const deleteCollection = (collectionId) => {
   return axios({ url: `/collections/${collectionId}`, method: 'delete' });
 };
 
-export default {
+const collectionService = {
   create,
   getOne,
   addMovieToCollection,
   deleteCollection,
   removeMovieFromCollection,
 };
+
+export default collectionService;

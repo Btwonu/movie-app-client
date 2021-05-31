@@ -27,8 +27,10 @@ const getOne = (id) => {
     .catch((err) => console.error(err));
 };
 
-export default {
+const movieService = {
   getMovies,
   getOne,
   getCategories,
 };
+
+export default movieService;

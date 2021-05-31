@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 
 import { validateLoginData } from '../../utils/validators';
@@ -18,7 +18,7 @@ const LoginForm = ({ history }) => {
   const [notificationError, setNotificationError] = useState(null);
   const [validationErrors, setValidationErrors] = useState({});
 
-  const { login, user } = useAuth();
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,11 +50,11 @@ const LoginForm = ({ history }) => {
   const handleChange = (e) => {
     let { name, value } = e.target;
 
-    if (name == 'email') {
+    if (name === 'email') {
       setEmail(value);
     }
 
-    if (name == 'password') {
+    if (name === 'password') {
       setPassword(value);
     }
   };

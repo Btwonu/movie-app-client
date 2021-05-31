@@ -3,11 +3,8 @@ import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import Image from 'react-bootstrap/Image';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
 
 const StyledCard = styled.div`
   height: 100%;

@@ -10,6 +10,10 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     console.log('Context useEffect called');
+    updateUser();
+  }, []);
+
+  const updateUser = () => {
     setLoading(true);
     const token = localStorage.getItem('AuthToken');
 
@@ -33,7 +37,7 @@ const AuthProvider = ({ children }) => {
         });
       }
     }
-  }, []);
+  };
 
   const login = (email, password) => {
     return axios({

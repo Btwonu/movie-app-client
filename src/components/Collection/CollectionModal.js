@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -12,7 +12,7 @@ const CollectionModal = ({ movieId }) => {
   const [show, setShow] = useState(false);
   const [chosenCollectionId, setChosenCollectionId] = useState('');
 
-  const { login, user } = useAuth();
+  const { user } = useAuth();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

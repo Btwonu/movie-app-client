@@ -15,6 +15,8 @@ const getTrailer = (movieTitle) => {
   });
 };
 
-export default {
+const youtubeService = {
   getTrailer,
 };
+
+export default youtubeService;

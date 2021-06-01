@@ -16,7 +16,7 @@ const getMovies = async (movieType = '', pageNumber) => {
     params.page = pageNumber;
   }
 
-  return axios({ url, params });
+  return axios({ url, params }).then((result) => result.data);
 };
 
 const getOne = (id) => {

@@ -23,7 +23,7 @@ const useGetMovies = (category, pageNumber) => {
 
     movieService.getMovies(category, pageNumber).then(
       (result) => {
-        setMovies((prevMovies) => [...prevMovies, ...result.data]);
+        setMovies((prevMovies) => [...prevMovies, ...result]);
         setIsLoading(false);
         setTitle(createTitle(category));
       },

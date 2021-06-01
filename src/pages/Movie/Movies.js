@@ -12,11 +12,6 @@ const Movies = ({ match, history }) => {
 
   const observer = useRef();
 
-  const [title, isLoading, movies, error] = useGetMovies(
-    match.params.category,
-    pageNumber
-  );
-
   useEffect(() => {
     console.log('useEffect');
 
@@ -27,7 +22,12 @@ const Movies = ({ match, history }) => {
 
       window.scroll(0, history.location.state.lastScrollPosition);
     }
-  });
+  }, []);
+
+  const [title, isLoading, movies, error] = useGetMovies(
+    match.params.category,
+    pageNumber
+  );
 
   const detailsClickHandler = () => {
     let { pathname } = history.location;

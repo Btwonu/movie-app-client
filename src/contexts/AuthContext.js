@@ -29,10 +29,14 @@ const AuthProvider = ({ children }) => {
         axios({
           method: 'get',
           url: `/users/profile`,
-        }).then((user) => {
-          setUser(user.data);
-          setLoading(false);
-        });
+        })
+          .then((user) => {
+            setUser(user.data);
+            setLoading(false);
+          })
+          .catch((err) => {
+            console.log({ err });
+          });
       }
     }
   };

@@ -17,7 +17,7 @@ const StyledDiv = styled.div`
 const NavigationWrapper = styled.div``;
 
 function Navigation() {
-  const { user, logout, updateUser } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
     <StyledDiv>
@@ -44,7 +44,7 @@ function Navigation() {
                 <Nav.Link as={Link} to="/users/user">
                   Profile
                 </Nav.Link>
-                <Nav.Link as={Link} onClick={logout}>
+                <Nav.Link as={Link} to="" onClick={logout}>
                   Logout
                 </Nav.Link>
               </>

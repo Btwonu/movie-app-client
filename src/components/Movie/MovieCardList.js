@@ -36,6 +36,8 @@ class MovieCardList extends Component {
                 removeButton={this.props.removeButton}
                 collectionId={this.props.collectionId}
                 handleRemoveMovie={this.props.handleRemoveMovie}
+                detailsClickHandler={this.props.detailsClickHandler}
+                history={this.props.history}
               />
             </Col>
           )

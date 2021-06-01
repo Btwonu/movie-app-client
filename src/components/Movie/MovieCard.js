@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import collectionService from '../../services/collectionService';
-
 // Bootstrap
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -64,6 +62,8 @@ const MovieCard = ({
   removeButton,
   collectionId,
   handleRemoveMovie,
+  history,
+  detailsClickHandler,
 }) => {
   return (
     <StyledDiv>
@@ -78,6 +78,7 @@ const MovieCard = ({
       ) : null}
 
       <Card
+        onClick={detailsClickHandler}
         as={Link}
         to={`/movies/${id}`}
         bg="dark"

@@ -25,7 +25,7 @@ class MovieCardList extends Component {
               md="4"
               lg="3"
               xl="3"
-              className="mb-2"
+              className="mb-2 d-flex justify-content-center"
             >
               <MovieCard
                 id={tmdbId}
